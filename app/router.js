@@ -7,6 +7,13 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('user');
+  this.route('messages');
+  this.route('events');
+  this.route('eventlist');
+  this.route('event');
+  this.route('album');
+  this.route('admin');
 });
 
 export default Router;
