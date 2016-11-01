@@ -1,0 +1,13 @@
+<select id="user-dropdown">
+  {{#each users as |user|}}
+    <option value={{user.id}}>{{user.name}}</option>
+  {{/each}}
+</select>
+{{#each users as |user|}}
+{{/each}}
+<select id="interest-dropdown">
+  {{#each interests as |interest|}}
+    <option value={{interest.id}}>{{interest.name}}</option>
+  {{/each}}
+</select>
+<button class="ui button mini green" {{action "updateInterest"}}>Assign Interest</button>

@@ -12,8 +12,9 @@ New interest<br>
   <option>True</option>
   <option>False</option>
 </select>
-<button class="ui button mini green" {{action "createInterest"}}>Create Ingterest</button>
+<button class="ui button mini green" {{action "createInterest"}}>Create Interest</button>
 <hr>
+{{dev-assign users=model.users interests=model.interests updateInterest="updateInterest"}}
 <hr>
 {{#each model.users as |user|}}
   {{user.name}}<br>

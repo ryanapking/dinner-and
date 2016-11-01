@@ -11,5 +11,5 @@ export default DS.Model.extend({
   //has many events hosted
   //has many events planned
   //has many events attended
-  // interests: DS.hasMany('interest', { async: true })
+  interests: DS.hasMany('interest', { async: true })
 });
