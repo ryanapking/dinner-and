@@ -1,0 +1,23 @@
+{ "users": [{
+    "name": "Veruca Salt",
+    "age": 21,
+    "zip": 97201,
+    "about": 15,
+    "avatar": "http://i846.photobucket.com/albums/ab30/16bitninja/veruca_salt.jpg"
+  }, {
+    "name": "Mike Teavee",
+    "age": 23,
+    "zip": 97202,
+    "about": 1,
+    "avatar": "http://vignette1.wikia.nocookie.net/total-movies/images/7/72/Mike_Teavee.1.jpg/revision/latest?cb=20131128210542"
+  }, {
+    "name": "Violet Beauregarde",
+    "age": 25,
+    "zip": 97203,
+    "about": 3,
+    "avatar": "http://vignette4.wikia.nocookie.net/roalddahl/images/c/cb/Violet_Beauregarde_played_by_Denise.jpg/revision/latest?cb=20160426133233"
+  }],
+  "Interests":[{
+
+  }]
+}
