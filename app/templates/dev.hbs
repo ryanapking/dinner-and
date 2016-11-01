@@ -1,1 +1,16 @@
-{{outlet}}
+New User<br>
+{{input value=name placeholder="name" id="name"}}
+{{input value=age placeholder="age" id="age"}}
+{{input value=zip placeholder="zip" id="zip"}}
+{{textarea value=about placeholder="about" id="about"}}
+{{input value=avatar placeholder="avatar" id="avatar"}}
+<button class="ui button mini green" {{action "createUser"}}>Add User</button>
+<hr>
+<hr>
+{{#each model as |user|}}
+  {{user.name}}<br>
+  {{user.age}}<br>
+  {{user.zip}}<br>
+  {{user.about}}<br>
+  <img src={{user.avatar}}><hr>
+{{/each}}

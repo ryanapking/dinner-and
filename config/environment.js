@@ -17,6 +17,13 @@ module.exports = function(environment) {
       }
     },
 
+    firebase: {
+      apiKey: "AIzaSyBeOVTS3ThbHm9qFuEaGVE48kssx4eoYWE",
+      authDomain: "dinnerand-e232a.firebaseapp.com",
+      databaseURL: "https://dinnerand-e232a.firebaseio.com",
+      storageBucket: "dinnerand-e232a.appspot.com"
+    },
+
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
