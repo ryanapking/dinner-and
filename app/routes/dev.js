@@ -2,7 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model(){
-    return this.store.findAll("user");
+    return Ember.RSVP.hash({
+      users: this.store.findAll('user'),
+      interests: this.store.findAll('interest')
+    });
   },
   actions: {
     createUser(){
@@ -13,9 +16,25 @@ export default Ember.Route.extend({
         about: $("#about").val(),
         avatar: $("#avatar").val()
       };
-      console.log(params)
       var newUser = this.store.createRecord('user', params);
       newUser.save();
+    },
+    createInterest(){
+      var mature;
+      if($("#mature").val() === "True"){
+        mature = true;
+      } else {
+        mature = false;
+      }
+
+      var params = {
+        name: $("#i-name").val(),
+        mature: mature
+      };
+
+      var newInterest = this.store.createRecord('interest', params);
+      newInterest.save();
+
     }
   }
 });

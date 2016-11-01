@@ -6,8 +6,16 @@ New User<br>
 {{input value=avatar placeholder="avatar" id="avatar"}}
 <button class="ui button mini green" {{action "createUser"}}>Add User</button>
 <hr>
+New interest<br>
+{{input value=i-name placeholder="name" id="i-name"}}
+<select id="mature">
+  <option>True</option>
+  <option>False</option>
+</select>
+<button class="ui button mini green" {{action "createInterest"}}>Create Ingterest</button>
 <hr>
-{{#each model as |user|}}
+<hr>
+{{#each model.users as |user|}}
   {{user.name}}<br>
   {{user.age}}<br>
   {{user.zip}}<br>
