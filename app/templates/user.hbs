@@ -1,1 +1,6 @@
-{{model.name}}
+{{model.user.name}}<hr>
+<!-- {{model.interests}} -->
+  {{#each model.interests as |interest|}}
+   <button id={{interest.id}} class="ui button basic violet" {{action "toggleButton" interest interest.id model.user.id}}>{{interest.name}}</button>
+  {{/each}}
+<button class="ui button mini green" {{action "addInterests" model.user.id}}>Add Interests</button>

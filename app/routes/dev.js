@@ -60,25 +60,6 @@ export default Ember.Route.extend({
           })
         })
       })
-
-
-
-      // .then(function(response) {
-      //
-      //
-      //   user.get('interests').addObject(interest);
-      //   interest.get('users').addObject(user);
-      //   // user.save().then(function() {
-      //
-      //   })
-      // })
-
-      // var interest = this.store.findRecord("interest", interestID);
-      //
-      // console.log(user);
-      // console.log(interest);
-
-      // user.get('interests').addObject(interest);
     }
   }
 });
