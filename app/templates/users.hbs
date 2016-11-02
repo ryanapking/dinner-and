@@ -1,5 +1,5 @@
 <div class="ui four cards" style="width:100%">
   {{#each model as |user|}}
-    {{user-tile user=user}}
+    <a href="/user/{{user.id}}">{{user-tile user=user}}</a>
   {{/each}}
 </div>
