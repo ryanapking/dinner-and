@@ -26,7 +26,6 @@ export default Ember.Route.extend({
       var storage = this.store;
 
       var user;
-      var interest;
       var toAdd = this.addInterests;
 
       storage.findRecord("user", _userID).then(function(response) {
