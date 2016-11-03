@@ -1,0 +1,24 @@
+{{#if inNew}}
+<form class="ui form" id="user_new_form" {{action "testFunc"}}>
+  <div class="field">
+    <label>Name</label>
+    <input name="name" type="text">
+  </div>
+  <div class="field">
+    <label>Max Guests</label>
+    <input name="maxParticipants" type="number">
+  </div>
+  <div class="field">
+    <label>Address</label>
+    <input name="address" type="text">
+  </div>
+  <div class="field">
+    <label>Description</label>
+    <input name="description" type="text">
+  </div>
+  <div class="ui submit button">Submit</div>
+  <div class="ui error message"></div>
+</form>
+{{else}}
+<button class="ui button mini blue" {{action "toggleNew"}}>{{fa-icon "plus"}}</button>
+{{/if}}

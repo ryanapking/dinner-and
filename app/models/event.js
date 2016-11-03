@@ -4,8 +4,10 @@ export default DS.Model.extend({
   name: DS.attr(),
   maxParticipants: DS.attr(),
   zip: DS.attr(),
+  address: DS.attr(),
   description: DS.attr(),
   rating: DS.attr(),
+  host: DS.belongsTo('user', { async: true }),
   // interests: DS.hasMany('interest', { async: true })
   //hasmany photos
   //user belongsto

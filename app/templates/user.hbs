@@ -3,6 +3,7 @@
 {{model.user.age}}<br>
 {{model.user.zip}}<br>
 {{model.user.about}}<hr>
+{{event-new user=model.user}}
 {{#each model.interests as |interest|}}
   <button id={{interest.id}} class="ui button basic violet" {{action "togglebutton" interest interest.id model.user.id}}>{{interest.name}}</button>
 {{/each}}
