@@ -1,2 +1,8 @@
-{{event.name}}<br>
-{{event.host}}<hr>
+<div class="ui card" style="width:300px;margin:5px;">
+  <div class="image">
+    <img src={{event.image}} class='ui fluid image card-image' style="height: 350px;object-fit: cover;">
+  </div>
+  <div class="extra" style="text-align:right;">
+    {{event.name}} | {{#link-to "user" event.host.id}}{{event.host.name}}{{/link-to}}
+  </div>
+</div>

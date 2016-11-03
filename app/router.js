@@ -11,7 +11,7 @@ Router.map(function() {
   this.route('messages');
   this.route('events');
   this.route('eventlist');
-  this.route('event');
+  this.route('event', {path: '/event/:event_id'});
   this.route('album');
   this.route('admin');
   this.route('dev');

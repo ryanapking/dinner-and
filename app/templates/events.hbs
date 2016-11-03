@@ -1,4 +1,5 @@
-{{event-new}}
-{{#each model as |event|}}
-  {{event-tile event=event}}
-{{/each}}
+<div class="ui four cards" style="width:100%">
+  {{#each model as |event|}}
+    {{#link-to "event" event.id}}{{event-tile event=event}}{{/link-to}}
+  {{/each}}
+</div>
