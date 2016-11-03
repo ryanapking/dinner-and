@@ -8,8 +8,7 @@ export default DS.Model.extend({
   avatar: DS.attr(),
   //has many reviews by
   //has many reviews of
-  //has many events hosted
-  //has many events planned
+  hosted:  DS.hasMany('event', { inverse: "host", async: true }),
   //has many events attended
   interests: DS.hasMany('interest', { async: true })
 });

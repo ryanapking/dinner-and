@@ -25,6 +25,15 @@ export default Ember.Component.extend({
             }
           ]
         },
+        zip: {
+          identifier  : 'zip',
+          rules: [
+            {
+              type   : 'empty',
+              prompt : 'Please enter a zip code'
+            }
+          ]
+        },
         address: {
           identifier  : 'address',
           rules: [
@@ -43,18 +52,34 @@ export default Ember.Component.extend({
             }
           ]
         },
+        image: {
+          identifier  : 'image',
+          rules: [
+            {
+              type   : 'empty',
+              prompt : 'Please enter an image URL'
+            }
+          ]
+        },
+
       }
     });
   },
   actions:{
     createEvent(){
+      console.log(this.get("user"));
       var params = {
         name: $("#name").val(),
         maxGuests: $("#maxGuests").val(),
         address: $("#address").val(),
-        descritpion: $("#descritpion").val(),
+        zip: $("#zip").val(),
+        description: $("#description").val(),
+        ratings: [],
+        image: $("#image").val(),
+        occurred: false,
         host: this.get("user")
       }
+      this.set("inNew", false);
       this.sendAction("createEvent", params);
     },
     toggleNew(){

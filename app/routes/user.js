@@ -7,8 +7,18 @@ export default Ember.Route.extend({
       user: this.store.findRecord('user', params.user_id),
       interests: this.store.findAll('interest')
     });
-  }
+  },
   actions:{
+    createEvent(params){
+      var newEvent = this.store.createRecord('event', params);
+      var user = params.host;
+      console.log(newEvent);
+      user.get('hosted').addObject(newEvent);
+      newEvent.save().then(function() {
+        return user.save();
+      });
+      this.transitionTo('/user/' + user.id, user);
+    },
     addInterests(_userID){
       var storage = this.store;
 
