@@ -7,21 +7,8 @@ export default Ember.Route.extend({
       user: this.store.findRecord('user', params.user_id),
       interests: this.store.findAll('interest')
     });
-  },
+  }
   actions:{
-    updateInterest(param){
-      // var userID = $("#user-dropdown").val();
-      // var interestID = $("#interest-dropdown").val();
-      // this.get("users").forEach(function(user) {
-      //   console.log(user.get("name"));
-      // })
-      console.log(typeof param)
-      var catcher=$("#interest_dropdown").val();
-      console.log(typeof catcher)
-      console.log(catcher.get("name"));
-
-      // this.sendAction("updateInterest", userID, interestID);
-    },
     addInterests(_userID){
       var storage = this.store;
 
@@ -43,13 +30,13 @@ export default Ember.Route.extend({
         })
       })
     },
-    toggleButton(_interest, _interestID, _userID){
+    togglebutton(_interest, _interestID, _userID){
       if(!($("#" + _interestID).hasClass("basic"))){
         $("#" + _interestID).addClass("basic");
-        this.addInterests.splice(this.addInterests.indexOf(_interest),1)
+        this.addInterests.splice(this.addInterests.indexOf(_interest),1);
       } else {
         this.addInterests.push(_interest);
-        console.log(this.addInterests)
+        console.log(this.addInterests);
         $("#" + _interestID).removeClass("basic");
       }
     }

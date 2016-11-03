@@ -1,6 +1,9 @@
-{{model.user.name}}<hr>
-<!-- {{model.interests}} -->
-  {{#each model.interests as |interest|}}
-   <button id={{interest.id}} class="ui button basic disabled violet" {{action "toggleButton" interest interest.id model.user.id}}>{{interest.name}}</button>
-  {{/each}}
+<img class="ui segment right floated" src={{model.user.avatar}}>
+{{model.user.name}}<br>
+{{model.user.age}}<br>
+{{model.user.zip}}<br>
+{{model.user.about}}<hr>
+{{#each model.interests as |interest|}}
+  <button id={{interest.id}} class="ui button basic violet" {{action "togglebutton" interest interest.id model.user.id}}>{{interest.name}}</button>
+{{/each}}
 <button class="ui button mini green" {{action "addInterests" model.user.id}}>Add Interests</button>
