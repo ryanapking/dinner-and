@@ -2,7 +2,7 @@ import DS from 'ember-data';
 
 export default DS.Model.extend({
   name: DS.attr(),
-  maxParticipants: DS.attr(),
+  maxGuests: DS.attr(),
   zip: DS.attr(),
   address: DS.attr(),
   description: DS.attr(),
