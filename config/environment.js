@@ -17,6 +17,10 @@ module.exports = function(environment) {
       }
     },
 
+    torii: {
+      sessionServiceName: 'session'
+    },
+
     firebase: {
       apiKey: "AIzaSyBeOVTS3ThbHm9qFuEaGVE48kssx4eoYWE",
       authDomain: "dinnerand-e232a.firebaseapp.com",
