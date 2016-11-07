@@ -13,17 +13,20 @@ export default Ember.Route.extend({
       var newUser = this.store.createRecord('user', params);
       var currentThis = this;
       const auth = this.get('firebaseApp').auth();
+
       auth.createUserWithEmailAndPassword(email, password).catch(function(error) {
         console.log(error.message);
       }).then(function(user) {
         newUser.set('id', user.uid);
-        newUser.save();
-        currentThis.get('session').open('firebase', {
-          provider: 'password',
-          email: email,
-          password: password
-        }).then(function() {
-          currentThis.transitionTo('users');
+        newUser.save().then(function() {
+          currentThis.get('session').open('firebase', {
+            provider: 'password',
+            email: email,
+            password: password
+          }).then(function() {
+            currentThis.store.unloadAll();
+            currentThis.transitionTo('users');
+          });
         });
       });
     },
