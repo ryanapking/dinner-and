@@ -79,7 +79,7 @@ export default Ember.Component.extend({
         host: this.get("user")
       }
       this.set("inNew", false);
-      // this.sendAction("createEvent", params);
+      this.sendAction("createEvent", params);
     },
     toggleNew(){
       if(this.inNew){
