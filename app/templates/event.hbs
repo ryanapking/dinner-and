@@ -1,12 +1,12 @@
 <!-- <div> -->
-  <img class="ui segment right floated fluid image" src={{model.image}} style="height:250px;width:250px;object-fit:cover">
-  <img class="ui segment right floated fluid image" src={{model.host.avatar}} style="height:250px;width:250px;object-fit:cover">
+  <img class="ui segment right floated fluid image" src={{model.event.image}} style="height:250px;width:250px;object-fit:cover">
+  <img class="ui segment right floated fluid image" src={{model.event.host.avatar}} style="height:250px;width:250px;object-fit:cover">
   <br>
-  Name: {{model.name}}<br>
-  Host: {{model.host.name}}<br>
-  Max Guests: {{model.maxGuests}}<br>
-  Zip Code:  {{model.zip}}<br>
-  {{#if model.occurred}}
+  Name: {{model.event.name}}<br>
+  Host: {{model.event.host.name}}<br>
+  Max Guests: {{model.event.maxGuests}}<br>
+  Zip Code:  {{model.event.zip}}<br>
+  {{#if model.event.occurred}}
   <!-- Append rating system -->
   <!-- Append attended -->
   {{else}}
@@ -14,5 +14,16 @@
   {{/if}}
 <!-- </div> -->
 <div style="margin-top:200px">
-  {{model.description}}
+  {{model.event.description}}
 </div>
+
+<!-- Temporary system until user auth is in -->
+<hr>
+Add user to event
+<hr>
+<select id="user-dropdown">
+  {{#each model.users as |user|}}
+    <option value={{user.id}}>{{user.name}}</option>
+  {{/each}}
+</select>
+<button class="ui button mini green" {{action "addInvited" model.event}}>Assign User to Event</button>
