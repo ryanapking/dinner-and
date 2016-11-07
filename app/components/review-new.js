@@ -32,9 +32,10 @@ export default Ember.Component.extend({
       var params = {
         author: "",
         comment: $("#comment").val(),
-        rating: $("#rating").val(),
+        rating: $("#event_rating").rating("get rating"),
         reviewedEvent: this.get("event")
       }
+      
       this.sendAction("createReview", userID, params);
     }
   }
