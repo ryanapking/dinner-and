@@ -1,0 +1,23 @@
+{{#if inNew}}
+<form class="ui form" id="review_new_form" {{action "createReview" false on="submit"}}>
+  <select id="user-dropdown">
+    {{#each event.attended as |user|}}
+      <option value={{user.id}}>{{user.name}}</option>
+    {{/each}}
+  </select>
+  <div class="field">
+    <label>Comment</label>
+    <input id="comment" name="comment" type="textarea">
+  </div>
+  <div class="field">
+    <label>Rating</label>
+    <input id="rating" name="rating" type="number">
+  </div>
+  <div class="ui submit button mini green">Submit</div>
+  <div class="ui error message"></div>
+</form>
+<div class="ui divider"></div>
+{{else}}
+  <button class="ui button mini blue" {{action "toggleNew"}}>{{fa-icon "plus"}}</button>
+  <br>
+{{/if}}

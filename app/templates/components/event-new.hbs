@@ -1,5 +1,5 @@
 {{#if inNew}}
-<form class="ui form" id="user_new_form" onsubmit="return false">
+<form class="ui form" id="user_new_form" {{action "createEvent" false on="submit"}}>
   <div class="field">
     <label>Name</label>
     <input id="name" name="name" type="text">
@@ -24,7 +24,7 @@
     <label>Splash Image (URL only)</label>
     <input id="image" name="image" type="text">
   </div>
-  <div class="ui submit button mini green" {{action "createEvent" false}}>Submit</div>
+  <div class="ui submit button mini green">Submit</div>
   <div class="ui error message"></div>
 </form>
 <div class="ui divider"></div>

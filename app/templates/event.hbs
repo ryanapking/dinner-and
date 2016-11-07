@@ -15,7 +15,7 @@
         <li>{{#link-to "user" attended.id}}{{attended.name}}{{/link-to}}</li>
       {{/each}}
     </ul>
-
+    {{review-new event=model.event createReview="createReview"}}
   {{else}}
     <ul>
       {{#each model.event.invited as |invited|}}

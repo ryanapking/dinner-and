@@ -5,8 +5,8 @@ export default Ember.Route.extend({
   model(params){
     return Ember.RSVP.hash({
       event: this.store.findRecord("event", params.event_id),
-      users: this.store.findAll('user')
-      });
+      users: this.store.findAll('user'),
+    });
   },
   actions:{
     addInvited(event){
@@ -49,6 +49,22 @@ export default Ember.Route.extend({
         console.log(this.addAttended);
         $("#" + _invitedID).removeClass("basic");
       }
+    },
+    createReview(_userID, _params){
+      var storage = this.store;
+      var event = _params.reviewedEvent;
+
+      storage.findRecord("user", _userID).then(function(response){
+        _params.author = response;
+        var newReview = storage.createRecord('review', _params);
+        response.get("reviewsMade").addObject(newReview);
+        event.get("reviewsOf").addObject(newReview);
+
+        newReview.save().then(function(){
+          event.save();
+          return response.save();
+        })
+      })
     }
   }
 });
