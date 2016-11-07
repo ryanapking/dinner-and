@@ -10,12 +10,17 @@
   {{#if model.event.occurred}}
   <!-- Append rating system -->
     Attended
-    <ul>
+
       {{#each model.event.attended as |attended|}}
-        <li>{{#link-to "user" attended.id}}{{attended.name}}{{/link-to}}</li>
+        <!-- <p>{{#link-to "user" attended.id}}{{attended.name}}{{/link-to}}</p> -->
+        {{attended-tile}}
+        {{#if (isLoggedIn attended.id session.uid)}}
+          {{review-new event=model.event createReview="createReview"}}
+        {{/if}}
       {{/each}}
-    </ul>
-    {{review-new event=model.event createReview="createReview"}}
+
+
+
   {{else}}
     <ul>
       {{#each model.event.invited as |invited|}}
@@ -29,6 +34,7 @@
 </div>
 
 <!-- Temporary system until user auth is in -->
+
 <hr>
 Add user to event
 <hr>
@@ -46,3 +52,4 @@ Add user to event
   {{/each}}
   <button class="ui button" {{action "eventOccurred" model.event}}>Event Occurred</button>
 {{/if}}
+<button {{action "testFunc" model.event.attended}}>?</button>
