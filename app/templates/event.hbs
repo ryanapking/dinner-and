@@ -33,8 +33,7 @@
   {{model.event.description}}
 </div>
 
-<!-- Temporary system until user auth is in -->
-
+{{#if (isLoggedIn model.event.host.id session.uid)}}
 <hr>
 Add user to event
 <hr>
@@ -44,6 +43,8 @@ Add user to event
   {{/each}}
 </select>
 <button class="ui button mini green" {{action "addInvited" model.event}}>Assign User to Event</button>
+{{/if}}
+
 <hr>
 {{#if model.event.occurred}}
 {{else}}
