@@ -10,6 +10,6 @@ export default DS.Model.extend({
   //has many reviews of
   hosted:  DS.hasMany('event', { inverse: "host", async: true }),
   invitedTo: DS.hasMany('event', { inverse: "invited", async: true }),
-  //has many events attended
+  attended: DS.hasMany('event', { inverse: "attended", async: true }),
   interests: DS.hasMany('interest', { async: true })
 });

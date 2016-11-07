@@ -11,7 +11,7 @@ export default DS.Model.extend({
   image: DS.attr(),
   host: DS.belongsTo('user', { inverse: "hosted", async: true }),
   invited: DS.hasMany('user', { inverse: "invitedTo", async: true }),
-
+  attended: DS.hasMany('user', { inverse: "attended", async: true }),
   // interests: DS.hasMany('interest', { async: true })
   //hasmany photos
   //user belongsto

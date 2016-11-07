@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  addAttended: [],
   model(params){
     return Ember.RSVP.hash({
       event: this.store.findRecord("event", params.event_id),
@@ -24,6 +25,30 @@ export default Ember.Route.extend({
           return event.save();
         })
       })
+    },
+    eventOccurred(event){
+      console.log(this.addAttended);
+      event.occurred = true;
+      this.addAttended.forEach(function(user) {
+        event.get("attended").addObject(user);
+
+        user.get("attended").then(function(response) {
+          response.addObject(event);
+          response.save();
+          event.save();
+        })
+      })
+    },
+    togglebutton(_invited, _invitedID){
+      //
+      if(!($("#" + _invitedID).hasClass("basic"))){
+        $("#" + _invitedID).addClass("basic");
+        this.addAttended.splice(this.addAttended.indexOf(_invited),1);
+      } else {
+        this.addAttended.push(_invited);
+        console.log(this.addAttended);
+        $("#" + _invitedID).removeClass("basic");
+      }
     }
   }
 });

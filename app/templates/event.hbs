@@ -6,11 +6,22 @@
   Host: {{model.event.host.name}}<br>
   Max Guests: {{model.event.maxGuests}}<br>
   Zip Code:  {{model.event.zip}}<br>
+
   {{#if model.event.occurred}}
   <!-- Append rating system -->
-  <!-- Append attended -->
+    Attended
+    <ul>
+      {{#each model.event.attended as |attended|}}
+        <li>{{#link-to "user" attended.id}}{{attended.name}}{{/link-to}}</li>
+      {{/each}}
+    </ul>
+
   {{else}}
-  <!-- Append invited -->
+    <ul>
+      {{#each model.event.invited as |invited|}}
+        <li>{{#link-to "user" invited.id}}{{invited.name}}{{/link-to}}</li>
+      {{/each}}
+    </ul>
   {{/if}}
 <!-- </div> -->
 <div style="margin-top:200px">
@@ -27,3 +38,11 @@ Add user to event
   {{/each}}
 </select>
 <button class="ui button mini green" {{action "addInvited" model.event}}>Assign User to Event</button>
+<hr>
+{{#if model.event.occurred}}
+{{else}}
+  {{#each model.event.invited as |invited|}}
+    <button id={{invited.id}} class="ui button basic violet" {{action "togglebutton" invited invited.id}}>{{invited.name}}</button>
+  {{/each}}
+  <button class="ui button" {{action "eventOccurred" model.event}}>Event Occurred</button>
+{{/if}}
