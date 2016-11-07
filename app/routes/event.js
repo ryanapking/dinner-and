@@ -4,7 +4,8 @@ export default Ember.Route.extend({
   addAttended: [],
   model(params){
     return Ember.RSVP.hash({
-      event: this.store.findRecord("event", params.event_id),
+      event: this.store.findRecord("event", params.event_id, { reload: true}),
+
       users: this.store.findAll('user'),
     });
   },

@@ -12,8 +12,8 @@
     Attended
 
       {{#each model.event.attended as |attended|}}
-        <!-- <p>{{#link-to "user" attended.id}}{{attended.name}}{{/link-to}}</p> -->
-        {{attended-tile}}
+        <p>{{#link-to "user" attended.id}}{{attended.name}}{{/link-to}}</p>
+        <!-- {{attended-tile}} -->
         {{#if (isLoggedIn attended.id session.uid)}}
           {{review-new event=model.event createReview="createReview"}}
         {{/if}}
@@ -52,4 +52,4 @@ Add user to event
   {{/each}}
   <button class="ui button" {{action "eventOccurred" model.event}}>Event Occurred</button>
 {{/if}}
-<button {{action "testFunc" model.event.attended}}>?</button>
+<button {{action "testFunc" model.event.attended.length}}>?</button>
