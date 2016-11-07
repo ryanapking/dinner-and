@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  showCreate: false,
   actions: {
     createUser() {
       var params = {
@@ -13,6 +14,9 @@ export default Ember.Component.extend({
       var email = this.get('email');
       var password = this.get('password');
       this.sendAction('createUser', params, email, password);
+    },
+    showCreate() {
+      this.set('showCreate', true);
     }
   }
 });
