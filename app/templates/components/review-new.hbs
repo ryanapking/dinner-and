@@ -7,11 +7,19 @@
   </select>
   <div class="field">
     <label>Comment</label>
-    <input id="comment" name="comment" type="textarea">
+    <textarea id="comment" name="comment"></textarea>
   </div>
   <div class="field">
     <label>Rating</label>
-    <input id="rating" name="rating" type="number">
+    <!-- <input id="rating" name="rating" type="number"> -->
+    {{ui-rating
+    id="event_rating"
+    class="heart"
+    rating=heartRating
+    initialRating=3
+    maxRating=5
+    onRate=(action (mut heartRating))
+    clearable=false}}
   </div>
   <div class="ui submit button mini green">Submit</div>
   <div class="ui error message"></div>
