@@ -1,9 +1,9 @@
 <div class="ui pushable component context">
   {{#ui-sidebar class="menu top inline horizontal" context=".component.context" id="sub-sidebar"}}
-    <a class="item" href="/">Home</a>
-    <a class="item" href="/dev">Dev</a>
-    <a class="item" href="/events">Events</a>
-    <a class="item" href="/users">Users</a>
+    <span class="item">{{#link-to 'index'}}Home{{/link-to}}</span>
+    <span class="item">{{#link-to 'dev'}}Dev{{/link-to}}</span>
+    <span class="item">{{#link-to 'events'}}Events{{/link-to}}</span>
+    <span class="item">{{#link-to 'users'}}Users{{/link-to}}</span>
   {{/ui-sidebar}}
   <div class="pusher">
     <div class="ui basic segment">
