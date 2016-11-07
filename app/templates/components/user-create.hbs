@@ -1,0 +1,9 @@
+<h1>Create User:</h1>
+{{input value=email placeholder="email"}}
+{{input value=password type='password' placeholder="password"}}
+{{input value=name placeholder="name" id="name"}}
+{{input value=age placeholder="age" id="age"}}
+{{input value=zip placeholder="zip" id="zip"}}
+{{textarea value=about placeholder="about" id="about"}}
+{{input value=avatar placeholder="avatar" id="avatar"}}
+<button {{action 'createUser'}}>Create User</button>
