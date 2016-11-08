@@ -1,0 +1,4 @@
+{{#each interests as |interest|}}
+  <button id={{interest.id}} class="ui button basic" {{action "togglebutton" interest interest.id}}>{{interest.name}}</button>
+{{/each}}
+<button class="ui button mini green" {{action "addInterests" user.id}}>Add Interests</button>

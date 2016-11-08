@@ -24,18 +24,26 @@ export default Ember.Route.extend({
         this.transitionTo('/user/' + user.id, user);
       });
     },
-    addInterests(_userID){
+    addInterests(_userID, _addInterests, _removeInterests){
+
       var storage = this.store;
 
       var user;
-      var toAdd = this.addInterests;
+      var toAdd = _addInterests;
+      var toRemove = _removeInterests;
 
       storage.findRecord("user", _userID).then(function(response) {
         user = response;
+        // user.set("interests",)
       }).then(function() {
         toAdd.forEach(function(interest) {
+          console.log("in")
           interest.get("users").addObject(user);
           user.get("interests").addObject(interest);
+        })
+        toRemove.forEach(function(interest) {
+          interest.get("users").removeObject(user);
+          user.get("interests").removeObject(interest);
         })
       }).then(function() {
         user.save().then(function() {
