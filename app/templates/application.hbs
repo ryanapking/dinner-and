@@ -1,25 +1,57 @@
-<div class="ui pushable component context">
-  {{#ui-sidebar class="menu top inline horizontal" context=".component.context" id="sub-sidebar"}}
-    <span class="item">{{#link-to 'index'}}Home{{/link-to}}</span>
-    <span class="item">{{#link-to 'dev'}}Dev{{/link-to}}</span>
-    <span class="item">{{#link-to 'events'}}Events{{/link-to}}</span>
-    <span class="item">{{#link-to 'users'}}Users{{/link-to}}</span>
-  {{/ui-sidebar}}
-  <div class="pusher">
-    <div class="ui basic segment">
-      <div style="text-align:right;">
-        {{#if session.isAuthenticated}}
-          <button {{action 'logout'}}>Logout</button>
-        {{else}}
-          {{user-create createUser='createUser'}}
-          {{user-login loginUser='loginUser'}}
-        {{/if}} &nbsp;
-        <button class="ui basic circular button mini right floated"  {{action "toggleSidebar"}}>{{fa-icon "bars"}}</button>
-      </div>
-      <br><br>
-      <div class="ui segment" style="min-height:100vh">
-        {{outlet}}
+{{#if (routeReturn currentPath)}}
+  <body style="background-image:url('/assets/images/DinnerAnd_Splash.png');background-size:cover;background-position:center;min-height:100vh">
+    <div class="ui pushable component context">
+      {{#ui-sidebar class="menu top inline horizontal" context=".component.context" id="sub-sidebar"}}
+        <span class="item">{{#link-to 'index'}}Home{{/link-to}}</span>
+        <span class="item">{{#link-to 'dev'}}Dev{{/link-to}}</span>
+        <span class="item">{{#link-to 'events'}}Events{{/link-to}}</span>
+        <span class="item">{{#link-to 'users'}}Users{{/link-to}}</span>
+      {{/ui-sidebar}}
+      <div class="pusher">
+        <div class="ui basic segment">
+          <div style="text-align:right;">
+            {{#if session.isAuthenticated}}
+              <button {{action 'logout'}}>Logout</button>
+            {{else}}
+              {{user-create createUser='createUser'}}
+              {{user-login loginUser='loginUser'}}
+            {{/if}} &nbsp;
+            <button class="ui basic circular button mini right floated"  {{action "toggleSidebar"}}>{{fa-icon "bars"}}</button>
+          </div>
+          <br><br>
+          <!-- <div class="ui segment" style="min-height:100vh"> -->
+            {{outlet}}
+          <!-- </div> -->
+        </div>
       </div>
     </div>
-  </div>
-</div>
+  </body>
+{{else}}
+  <body style="min-height:100vh">
+    <div class="ui pushable component context">
+      {{#ui-sidebar class="menu top inline horizontal" context=".component.context" id="sub-sidebar"}}
+        <span class="item">{{#link-to 'index'}}Home{{/link-to}}</span>
+        <span class="item">{{#link-to 'dev'}}Dev{{/link-to}}</span>
+        <span class="item">{{#link-to 'events'}}Events{{/link-to}}</span>
+        <span class="item">{{#link-to 'users'}}Users{{/link-to}}</span>
+      {{/ui-sidebar}}
+      <div class="pusher">
+        <div class="ui basic segment">
+          <div style="text-align:right;">
+            {{#if session.isAuthenticated}}
+              <button {{action 'logout'}}>Logout</button>
+            {{else}}
+              {{user-create createUser='createUser'}}
+              {{user-login loginUser='loginUser'}}
+            {{/if}} &nbsp;
+            <button class="ui basic circular button mini right floated"  {{action "toggleSidebar"}}>{{fa-icon "bars"}}</button>
+          </div>
+          <br><br>
+          <!-- <div class="ui segment" style="min-height:100vh"> -->
+            {{outlet}}
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+  </body>
+{{/if}}
