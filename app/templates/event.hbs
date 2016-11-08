@@ -34,23 +34,22 @@
 </div>
 
 {{#if (isLoggedIn model.event.host.id session.uid)}}
-<hr>
-Add user to event
-<hr>
-<select id="user-dropdown">
-  {{#each model.users as |user|}}
-    <option value={{user.id}}>{{user.name}}</option>
-  {{/each}}
-</select>
-<button class="ui button mini green" {{action "addInvited" model.event}}>Assign User to Event</button>
-{{/if}}
+  <hr>
+  Add user to event
+  <hr>
+  <select id="user-dropdown">
+    {{#each model.users as |user|}}
+      <option value={{user.id}}>{{user.name}}</option>
+    {{/each}}
+  </select>
+  <button class="ui button mini green" {{action "addInvited" model.event}}>Assign User to Event</button>
 
-<hr>
-{{#if model.event.occurred}}
-{{else}}
-  {{#each model.event.invited as |invited|}}
-    <button id={{invited.id}} class="ui button basic violet" {{action "togglebutton" invited invited.id}}>{{invited.name}}</button>
-  {{/each}}
-  <button class="ui button" {{action "eventOccurred" model.event}}>Event Occurred</button>
+  <hr>
+  {{#if model.event.occurred}}
+  {{else}}
+    {{#each model.event.invited as |invited|}}
+      <button id={{invited.id}} class="ui button basic violet" {{action "togglebutton" invited invited.id}}>{{invited.name}}</button>
+    {{/each}}
+    <button class="ui button" {{action "eventOccurred" model.event}}>Event Occurred</button>
+  {{/if}}
 {{/if}}
-<button {{action "testFunc" model.event.attended.length}}>?</button>
