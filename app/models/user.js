@@ -14,6 +14,7 @@ export default DS.Model.extend({
   invitedTo: DS.hasMany('event', { inverse: "invited", async: true }),
   attended: DS.hasMany('event', { inverse: "attended", async: true }),
   interests: DS.hasMany('interest', { async: true }),
-  requestInvites: DS.hasMany('event', { inverse: "inviteRequests", async: true})
 
+  invitesRequested: DS.hasMany('event', { inverse: "inviteRequests", async: true}),
+  invitesReceived: DS.hasMany('event', { inverse: "invitesSent", async: true})
 });

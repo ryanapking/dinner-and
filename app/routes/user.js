@@ -9,6 +9,30 @@ export default Ember.Route.extend({
     });
   },
   actions:{
+
+    acceptInvite(user){
+      var eventID = $("#user-dropdown").val();
+      console.log($("#user-dropdown").val());
+      var storage = this.store;
+      var catcher = storage.findRecord("event", eventID);
+      console.log(user)
+
+      storage.findRecord("event", eventID).then(function(response) {
+        console.log(">");
+        response.get('invited').addObject(user);
+        console.log(">>");
+        user.get('invitedTo').addObject(response);
+        console.log(">>>");
+        user.get('invitesReceived').removeObject(response);
+        console.log(">>>>");
+        response.get('invitesSent').removeObject(user);
+        // console.log(response.toJSON())
+        response.save().then(function() {
+          console.log(">>>>>");
+          return user.save();
+        })
+      })
+    },
     createEvent(params){
       var newEvent = this.store.createRecord('event', params);
       var user = params.host;
