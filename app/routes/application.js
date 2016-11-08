@@ -2,6 +2,16 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   actions:{
+    snuffleLogin() {
+      var currentThis = this;
+      this.get('session').open('firebase', {
+        provider: 'password',
+        email: 'snuffle@email.com',
+        password: 'snuffle'
+      }).then(function() {
+        currentThis.transitionTo('user', currentThis.get('session.uid'));
+      });
+    },
     toggleSidebar(){
       $("#sub-sidebar").sidebar('toggle');
     },
