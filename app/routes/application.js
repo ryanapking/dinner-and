@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   actions:{
     snuffleLogin() {
+      console.log('snuffle!');
       var currentThis = this;
       this.get('session').open('firebase', {
         provider: 'password',

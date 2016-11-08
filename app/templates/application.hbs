@@ -14,7 +14,7 @@
               <button {{action 'logout'}}>Logout</button>
             {{else}}
               {{user-create createUser='createUser'}}
-              {{user-login loginUser='loginUser'}}
+              {{user-login loginUser='loginUser' snuffleLogin='snuffleLogin'}}
             {{/if}} &nbsp;
             <button style="background-color:LemonChiffon" class="ui circular button mini right floated"  {{action "toggleSidebar"}}>{{fa-icon "bars"}}</button>
           </div>
