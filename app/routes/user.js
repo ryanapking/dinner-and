@@ -1,11 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  currentPath: "",
-  afterModel(){
-    this.set("currentPath", "test");
-    // console.log(this.get("routeName"));
-  },
   addInterests:[],
   model(params){
     return Ember.RSVP.hash({
@@ -59,10 +54,6 @@ export default Ember.Route.extend({
         console.log(this.addInterests);
         $("#" + _interestID).removeClass("basic");
       }
-    },
-    testFunc(){
-      this.set("currentPath", "test");
-      console.log(this.get(this.currentPath));
     }
   }
 });
