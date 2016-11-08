@@ -1,6 +1,11 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  currentPath: "",
+  afterModel(){
+    this.set("currentPath", "test");
+    // console.log(this.get("routeName"));
+  },
   addInterests:[],
   model(params){
     return Ember.RSVP.hash({
@@ -46,7 +51,7 @@ export default Ember.Route.extend({
         })
       })
     },
-    togglebutton(_interest, _interestID, _userID){
+    togglebutton(_interest, _interestID){
       if(!($("#" + _interestID).hasClass("basic"))){
         $("#" + _interestID).addClass("basic");
         this.addInterests.splice(this.addInterests.indexOf(_interest),1);
@@ -55,6 +60,10 @@ export default Ember.Route.extend({
         console.log(this.addInterests);
         $("#" + _interestID).removeClass("basic");
       }
+    },
+    testFunc(){
+      this.set("currentPath", "test");
+      console.log(this.get(this.currentPath));
     }
   }
 });
