@@ -9,6 +9,30 @@ export default Ember.Route.extend({
     });
   },
   actions:{
+
+    acceptInvite(user){
+      var eventID = $("#user-dropdown").val();
+      console.log($("#user-dropdown").val());
+      var storage = this.store;
+      var catcher = storage.findRecord("event", eventID);
+      console.log(user)
+
+      storage.findRecord("event", eventID).then(function(response) {
+        console.log(">");
+        response.get('invited').addObject(user);
+        console.log(">>");
+        user.get('invitedTo').addObject(response);
+        console.log(">>>");
+        user.get('invitesReceived').removeObject(response);
+        console.log(">>>>");
+        response.get('invitesSent').removeObject(user);
+        // console.log(response.toJSON())
+        response.save().then(function() {
+          console.log(">>>>>");
+          return user.save();
+        })
+      })
+    },
     createEvent(params){
       var newEvent = this.store.createRecord('event', params);
       var user = params.host;
@@ -24,18 +48,26 @@ export default Ember.Route.extend({
         this.transitionTo('/user/' + user.id, user);
       });
     },
-    addInterests(_userID){
+    addInterests(_userID, _addInterests, _removeInterests){
+
       var storage = this.store;
 
       var user;
-      var toAdd = this.addInterests;
+      var toAdd = _addInterests;
+      var toRemove = _removeInterests;
 
       storage.findRecord("user", _userID).then(function(response) {
         user = response;
+        // user.set("interests",)
       }).then(function() {
         toAdd.forEach(function(interest) {
+          console.log("in")
           interest.get("users").addObject(user);
           user.get("interests").addObject(interest);
+        })
+        toRemove.forEach(function(interest) {
+          interest.get("users").removeObject(user);
+          user.get("interests").removeObject(interest);
         })
       }).then(function() {
         user.save().then(function() {

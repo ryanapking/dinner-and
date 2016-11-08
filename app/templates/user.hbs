@@ -1,14 +1,24 @@
 <img class="ui segment right floated" src={{model.user.avatar}} style="width:250px;height:auto;">
-{{model.user.name}}<br>
+<div class="ui horizontal divider">{{model.user.name}}</div>
 {{model.user.age}}<br>
 {{model.user.zip}}<br>
-{{model.user.about}}<hr>
+{{model.user.about}}<br>
 {{#if (isLoggedIn model.user.id session.uid)}}
-  {{#each model.interests as |interest|}}
-    <button id={{interest.id}} class="ui button basic violet" {{action "togglebutton" interest interest.id model.user.id}}>{{interest.name}}</button>
-    {{/each}}
 
-  <button class="ui button mini green" {{action "addInterests" model.user.id}}>Add Interests</button>
+  {{interests-edit interests=model.interests user=model.user addInterests="addInterests"}}
 
   {{event-new user=model.user createEvent="createEvent"}}
+<!-- List of Invites to Events -->
+<div class="ui horizontal divider">Your Invites</div>
+  <select id="user-dropdown">
+    {{#each model.user.invitesReceived as |invite|}}
+      <option value={{invite.id}}>{{invite.name}}</option>
+    {{/each}}
+  </select>
+  <button class="ui button mini green" {{action "acceptInvite" model.user}}>Accept Request</button>
 {{/if}}
+<div class="ui horizontal divider">Interests</div>
+
+{{#each model.user.interests as |interest|}}
+  <button class="ui button basic blue">{{interest.name}}</button>
+{{/each}}
