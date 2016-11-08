@@ -15,7 +15,10 @@ export default DS.Model.extend({
   invited: DS.hasMany('user', { inverse: "invitedTo", async: true }),
   attended: DS.hasMany('user', { inverse: "attended", async: true }),
   reviewsOf: DS.hasMany('review', {async: true}),
-  inviteRequests: DS.hasMany('user', { inverse: "requestInvites", async: true})
+
+  // New Invite System
+  inviteRequests: DS.hasMany('user', { inverse: "invitesRequested", async: true}),
+  invitesSent: DS.hasMany('user', { inverse: "invitesReceived", async: true})
   // interests: DS.hasMany('interest', { async: true })
   //hasmany photos
   //user belongsto
