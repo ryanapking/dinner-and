@@ -1,15 +1,26 @@
+
+
 {{#leaflet-map lat=lat lng=lng zoom=zoom}}
 
   {{tile-layer url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
 
-  {{#each events as |site|}}
-    {{#unless site.occurred}}
-      {{#marker-layer lat=site.lat lng=site.lng}}
-      {{#popup-layer}}
-      {{#link-to "event" site.id}}
-      {{event-tile event=site}}
-      {{/link-to}}
-      {{/popup-layer}}
+  {{#if events.name}}
+    {{#marker-layer lat=events.lat lng=events.lng}}
+    {{/marker-layer}}
+  {{/if}}
+
+  {{#each events as |event|}}
+    {{#unless event.occurred}}
+      {{#marker-layer lat=event.lat lng=event.lng}}
+        {{#popup-layer}}
+          {{log event.occurred}}
+          {{#link-to "event" event.id}}
+            <h4>{{event.name}}</h4>
+            <div>Host: {{event.host.name}}</div>
+            <div>Max Guests: {{event.maxGuests}}</div>
+            <div>Zipcode:{{event.zip}}</div>
+          {{/link-to}}
+        {{/popup-layer}}
       {{/marker-layer}}
     {{/unless}}
   {{/each}}

@@ -80,3 +80,5 @@
     <button class="ui button" {{action "eventOccurred" model.event}}>Event Occurred</button>
   {{/if}}
 {{/if}}
+{{log model.event}}
+{{event-map events=model.event lat=model.event.lat lng=model.event.lng}}
