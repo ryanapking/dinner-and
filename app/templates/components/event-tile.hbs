@@ -5,10 +5,10 @@
     <img src={{event.image}} class='ui fluid image card-image' style="height: 350px;object-fit: cover;">
     {{/link-to}}
   </div>
-  {{#unless event.occurred}}
-    <a {{action 'mapEvent' event}} style='text-align:left;'>Show on Map</a>
-  {{/unless}}
   <div class="extra" style="text-align:right;">
+    {{#unless event.occurred}}
+      <a {{action 'mapEvent' event}} style='text-align:left;'>{{fa-icon "map-marker"}}</a>
+    {{/unless}} |
     {{event.name}} | {{#link-to "user" event.host.id}}{{event.host.name}}{{/link-to}}
   </div>
 </div>

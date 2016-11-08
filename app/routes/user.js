@@ -23,12 +23,11 @@ export default Ember.Route.extend({
       var location = Ember.$.getJSON(url).then(function(response) {
         newEvent.set('lat', response.results[0].geometry.location.lat);
         newEvent.set('lng', response.results[0].geometry.location.lng);
-        newEvent.save();
+        newEvent.save().then(function() {
+          return user.save();
+        });
         this.transitionTo('/user/' + user.id, user);
       });
-      // newEvent.save().then(function() {
-      //   return user.save();
-      // });
     },
     addInterests(_userID){
       var storage = this.store;

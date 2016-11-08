@@ -16,7 +16,7 @@
               {{user-create createUser='createUser'}}
               {{user-login loginUser='loginUser'}}
             {{/if}} &nbsp;
-            <button class="ui circular button mini right floated"  {{action "toggleSidebar"}}>{{fa-icon "bars"}}</button>
+            <button style="background-color:LemonChiffon" class="ui circular button mini right floated"  {{action "toggleSidebar"}}>{{fa-icon "bars"}}</button>
           </div>
           <br><br>
           <!-- <div class="ui segment" style="min-height:100vh"> -->
@@ -27,7 +27,7 @@
     </div>
   </body>
 {{else}}
-  <body style="min-height:100vh">
+  <body style="min-height:100vh;background-color:#e6e6ff">
     <div class="ui pushable component context">
       {{#ui-sidebar class="menu top inline horizontal" context=".component.context" id="sub-sidebar"}}
         <span class="item">{{#link-to 'index'}}Home{{/link-to}}</span>
@@ -44,7 +44,7 @@
               {{user-create createUser='createUser'}}
               {{user-login loginUser='loginUser'}}
             {{/if}} &nbsp;
-            <button class="ui basic circular button mini right floated"  {{action "toggleSidebar"}}>{{fa-icon "bars"}}</button>
+            <button style="background-color:LemonChiffon" class="ui basic circular button mini right floated"  {{action "toggleSidebar"}}>{{fa-icon "bars"}}</button>
           </div>
           <br><br>
             {{outlet}}
