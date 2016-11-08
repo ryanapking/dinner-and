@@ -1,28 +1,22 @@
-
-
 {{#leaflet-map lat=lat lng=lng zoom=zoom}}
 
   {{tile-layer url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
 
-  {{#if events.name}}
-    {{#marker-layer lat=events.lat lng=events.lng}}
-    {{/marker-layer}}
-  {{/if}}
-
-  {{#each events as |event|}}
-    {{#unless event.occurred}}
-      {{#marker-layer lat=event.lat lng=event.lng}}
-        {{#popup-layer}}
-          {{log event.occurred}}
-          {{#link-to "event" event.id}}
+  {{#each sortedByZip as |zipcode|}}
+    {{#marker-layer lat=zipcode.lat lng=zipcode.lng}}
+      {{#popup-layer}}
+        <hr>
+        {{#each zipcode.events as |event|}}
+          {{#link-to 'event' event.id}}
             <h4>{{event.name}}</h4>
-            <div>Host: {{event.host.name}}</div>
             <div>Max Guests: {{event.maxGuests}}</div>
-            <div>Zipcode:{{event.zip}}</div>
+            <div>Zip Code: {{event.zip}}</div>
           {{/link-to}}
-        {{/popup-layer}}
-      {{/marker-layer}}
-    {{/unless}}
+          <hr>
+        {{/each}}
+      {{/popup-layer}}
+    {{/marker-layer}}
   {{/each}}
+
 
 {{/leaflet-map}}
