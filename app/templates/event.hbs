@@ -33,12 +33,27 @@
   {{model.event.description}}
 </div>
 
+<hr>
+<!-- Request Invitation as non-host -->
+{{#if session.isAuthenticated}}
+  Request Invite
+  <select id="invite-request">
+    {{#each model.users as |user|}}
+    {{#if (isLoggedIn user.id session.uid)}}
+      <option value={{user.id}}>{{user.name}}</option>
+    {{/if}}
+    {{/each}}
+  </select>
+  <button class="ui button mini green" {{action "requestInvite" model.event}}>Request Invite</button>
+{{/if}}
+
+<!-- Accept Invitations as Host -->
 {{#if (isLoggedIn model.event.host.id session.uid)}}
   <hr>
-  Add user to event
+  Accept Invite Requests
   <hr>
   <select id="user-dropdown">
-    {{#each model.users as |user|}}
+    {{#each model.event.inviteRequests as |user|}}
       <option value={{user.id}}>{{user.name}}</option>
     {{/each}}
   </select>

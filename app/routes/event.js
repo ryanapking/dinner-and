@@ -27,6 +27,23 @@ export default Ember.Route.extend({
         })
       })
     },
+    requestInvite(event){
+      // var event = this.get("model.event");
+      var userID = $("#invite-request").val();
+      console.log(event.get("name"));
+      console.log(userID);
+
+      var storage = this.store;
+
+      storage.findRecord("user", userID).then(function(response) {
+        response.get('requestInvites').addObject(event);
+        event.get('inviteRequests').addObject(response);
+
+        response.save().then(function() {
+          return event.save();
+        })
+      })
+    },
     eventOccurred(event){
       console.log(this.addAttended);
       event.occurred = true;
