@@ -1,18 +1,1 @@
-<div class="ui horizontal divider">Upcoming Events</div>
-<div class="ui four cards" style="width:100%">
-  {{#each model as |event|}}
-    {{#if event.occurred}}
-    {{else}}
-      {{#link-to "event" event.id}}{{event-tile event=event}}{{/link-to}}
-    {{/if}}
-  {{/each}}
-</div>
-<div class="ui horizontal divider">Completed Events</div>
-<div class="ui four cards" style="width:100%">
-  {{#each model as |event|}}
-    {{#if event.occurred}}
-      {{#link-to "event" event.id}}{{event-tile event=event}}{{/link-to}}
-    {{else}}
-    {{/if}}
-  {{/each}}
-</div>
+{{events-shim events=model}}
