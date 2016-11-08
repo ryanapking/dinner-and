@@ -1,0 +1,17 @@
+{{#leaflet-map lat=lat lng=lng zoom=zoom}}
+
+  {{tile-layer url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
+
+  {{#each events as |site|}}
+    {{#unless site.occurred}}
+      {{#marker-layer lat=site.lat lng=site.lng}}
+      {{#popup-layer}}
+      {{#link-to "event" site.id}}
+      {{event-tile event=site}}
+      {{/link-to}}
+      {{/popup-layer}}
+      {{/marker-layer}}
+    {{/unless}}
+  {{/each}}
+
+{{/leaflet-map}}

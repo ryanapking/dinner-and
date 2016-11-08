@@ -4,6 +4,8 @@ export default DS.Model.extend({
   name: DS.attr(),
   maxGuests: DS.attr(),
   zip: DS.attr(),
+  lat: DS.attr(),
+  lng: DS.attr(),
   address: DS.attr(),
   description: DS.attr(),
   ratings: DS.attr(),
