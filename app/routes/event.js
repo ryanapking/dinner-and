@@ -10,6 +10,7 @@ export default Ember.Route.extend({
     });
   },
   actions:{
+
     addInvited(event){
       var userID = $("#user-dropdown").val();
       var storage = this.store;
@@ -18,7 +19,7 @@ export default Ember.Route.extend({
         response.get('invitedTo').addObject(event);
         event.get('invited').addObject(response);
         event.get('inviteRequests').removeObject(response);
-        response.get('requestInvites').removeObject(event);
+        response.get('invitesRequested').removeObject(event);
         response.save().then(function() {
           return event.save();
         })
@@ -29,8 +30,8 @@ export default Ember.Route.extend({
       var storage = this.store;
 
       storage.findRecord("user", userID).then(function(response) {
-        response.get('requestInvites').addObject(event);
-        event.get("inviteRequests").addObject(response);
+        response.get('invitesReceived').addObject(event);
+        event.get("invitesSent").addObject(response);
         response.save().then(function() {
           return event.save();
         })
@@ -45,7 +46,7 @@ export default Ember.Route.extend({
       var storage = this.store;
 
       storage.findRecord("user", userID).then(function(response) {
-        response.get('requestInvites').addObject(event);
+        response.get('invitesRequested').addObject(event);
         event.get('inviteRequests').addObject(response);
 
         response.save().then(function() {
