@@ -11,17 +11,26 @@ export default Ember.Route.extend({
   },
   actions:{
     addInvited(event){
-      // var event = this.get("model.event");
       var userID = $("#user-dropdown").val();
-      console.log(event.get("name"));
-      console.log(userID);
-
       var storage = this.store;
 
       storage.findRecord("user", userID).then(function(response) {
         response.get('invitedTo').addObject(event);
         event.get('invited').addObject(response);
+        event.get('inviteRequests').removeObject(response);
+        response.get('requestInvites').removeObject(event);
+        response.save().then(function() {
+          return event.save();
+        })
+      })
+    },
+    sendInvite(event){
+      var userID = $("#invite-send").val();
+      var storage = this.store;
 
+      storage.findRecord("user", userID).then(function(response) {
+        response.get('requestInvites').addObject(event);
+        event.get("inviteRequests").addObject(response);
         response.save().then(function() {
           return event.save();
         })

@@ -32,8 +32,8 @@
 <div style="margin-top:200px">
   {{model.event.description}}
 </div>
-
 <hr>
+
 <!-- Request Invitation as non-host -->
 {{#if session.isAuthenticated}}
   Request Invite
@@ -47,9 +47,11 @@
   <button class="ui button mini green" {{action "requestInvite" model.event}}>Request Invite</button>
 {{/if}}
 
-<!-- Accept Invitations as Host -->
+<!-- Host Invite Section -->
 {{#if (isLoggedIn model.event.host.id session.uid)}}
   <hr>
+
+  <!-- Accept Invitations as Host -->
   Accept Invite Requests
   <hr>
   <select id="user-dropdown">
@@ -59,6 +61,16 @@
   </select>
   <button class="ui button mini green" {{action "addInvited" model.event}}>Assign User to Event</button>
 
+  <!-- Send Out Invitations to Users -->
+  Send Out Invites
+  <select id="invite-send">
+    {{#each model.users as |user|}}
+      <option value={{user.id}}>{{user.name}}</option>
+    {{/each}}
+  </select>
+  <button class="ui button mini green" {{action "sendInvite" model.event}}>Send Invite</button>
+
+  <!-- Mark Invitees as Attended -->
   <hr>
   {{#if model.event.occurred}}
   {{else}}
