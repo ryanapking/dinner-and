@@ -3,12 +3,12 @@
 {{model.user.age}}<br>
 {{model.user.zip}}<br>
 {{model.user.about}}<hr>
-{{#each model.interests as |interest|}}
-  <button id={{interest.id}} class="ui button basic violet" {{action "togglebutton" interest interest.id model.user.id}}>{{interest.name}}</button>
-{{/each}}
 {{#if (isLoggedIn model.user.id session.uid)}}
+  {{#each model.interests as |interest|}}
+    <button id={{interest.id}} class="ui button basic violet" {{action "togglebutton" interest interest.id model.user.id}}>{{interest.name}}</button>
+    {{/each}}
+
   <button class="ui button mini green" {{action "addInterests" model.user.id}}>Add Interests</button>
 
   {{event-new user=model.user createEvent="createEvent"}}
 {{/if}}
-<button {{action "testFunc"}}></button>
