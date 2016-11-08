@@ -11,6 +11,7 @@ export default DS.Model.extend({
   ratings: DS.attr(),
   occurred: DS.attr(),
   image: DS.attr(),
+  date: DS.attr(),
   host: DS.belongsTo('user', { inverse: "hosted", async: true }),
   invited: DS.hasMany('user', { inverse: "invitedTo", async: true }),
   attended: DS.hasMany('user', { inverse: "attended", async: true }),
