@@ -67,8 +67,5 @@ export default Ember.Route.extend({
         })
       })
     },
-    testFunc(param){
-      console.log(param);
-    }
   }
 });

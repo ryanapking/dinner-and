@@ -7,7 +7,15 @@
   {{/ui-sidebar}}
   <div class="pusher">
     <div class="ui basic segment">
-      <button class="ui basic circular button mini right floated"  {{action "toggleSidebar"}}>{{fa-icon "bars"}}</button>
+      <div style="text-align:right;">
+        {{#if session.isAuthenticated}}
+          <button {{action 'logout'}}>Logout</button>
+        {{else}}
+          {{user-create createUser='createUser'}}
+          {{user-login loginUser='loginUser'}}
+        {{/if}} &nbsp;
+        <button class="ui basic circular button mini right floated"  {{action "toggleSidebar"}}>{{fa-icon "bars"}}</button>
+      </div>
       <br><br>
       {{outlet}}
     </div>
