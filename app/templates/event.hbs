@@ -1,11 +1,29 @@
 <img class="ui segment right floated fluid image" src={{model.event.image}} style="height:250px;width:250px;object-fit:cover">
 <img class="ui segment right floated fluid image" src={{model.event.host.avatar}} style="height:250px;width:250px;object-fit:cover">
-<br>
-Name: {{model.event.name}}<br>
-Host: {{model.event.host.name}}<br>
-Max Guests: {{model.event.maxGuests}}<br>
-Zip Code:  {{model.event.zip}}<br>
-When: {{date-stamp model.event.date}}<br>
+
+<div class="ui horizontal divider" style="font-size:200%;font-family:'Muli'">{{model.event.name}}</div>
+
+<div class="ui horizontal segments">
+  <div class="ui segment" style="background-color:#EEF3E2;text-align:center;">
+    <p style="font-size:150%;">Host</p>
+    {{model.event.host.name}}
+  </div>
+  <div class="ui segment" style="background-color:#EEF3E2;text-align:center;">
+    <p style="font-size:150%;">Max Guests</p>
+    {{model.event.maxGuests}}
+  </div>
+</div>
+<div class="ui horizontal segments">
+  <div class="ui segment" style="background-color:#EEF3E2;text-align:center;">
+    <p style="font-size:150%;">Where</p>
+    {{model.event.zip}}
+  </div>
+  <div class="ui segment" style="background-color:#EEF3E2;text-align:center;">
+    <p style="font-size:150%;">When</p>
+    {{date-stamp model.event.date}}
+  </div>
+</div>
+{{model.event.description}}
 
 {{#if model.event.occurred}}
 <!-- Rating System -->
@@ -18,18 +36,17 @@ When: {{date-stamp model.event.date}}<br>
     {{/each}}
 {{else}}
 <!-- List of Guests -->
-  <ul>
+  <br><br>
+  <div class="ui horizontal divider" style="font-size:175%;font-family:'Muli'">Attending</div>
+  <div class="ui four cards" style="width:100%">
     {{#each model.event.invited as |invited|}}
-      <li>{{#link-to "user" invited.id}}{{invited.name}}{{/link-to}}</li>
+      {{#unless}}
+        {{#link-to "user" invited.id}}{{user-tile user=invited}}{{/link-to}}
+      {{/unless}}
     {{/each}}
-  </ul>
+  </div>
 {{/if}}
-
-<div style="margin-top:200px">
-  {{model.event.description}}
-</div>
-<hr>
-
+<div class="ui horizontal divider" style="font-size:175%;font-family:'Muli'">Whereabouts</div>
 <!-- Request Invitation as non-host -->
 {{#if session.isAuthenticated}}
   Request Invite

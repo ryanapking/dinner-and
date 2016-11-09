@@ -11,11 +11,11 @@
       {{model.user.zip}}
     </div>
   </div>
-  <div class="ui horizontal segments">
-    <div class="ui segment">
+  <!-- <div class="ui horizontal segments">
+    <div class="ui segment"> -->
       <p>{{model.user.about}}</p>
-    </div>
-  </div>
+    <!-- </div>
+  </div> -->
 </div>
 
 
@@ -36,7 +36,28 @@
 {{/if}}
 
 <!-- Lists of Interests -->
-<div class="ui horizontal divider">Interests</div>
+<div class="ui horizontal divider" style="font-size:175%;font-family:'Muli'">Interests</div>
 {{#each model.user.interests as |interest|}}
   <button class="ui button basic blue">{{interest.name}}</button>
 {{/each}}
+
+<div class="ui horizontal divider" style="font-size:175%;font-family:'Muli'">Hosted</div>
+
+<div class="ui four cards" style="width:100%">
+  {{#each model.user.hosted as |event|}}
+    {{#if event.occurred}}
+    {{else}}
+      {{event-tile event=event mapEvent='mapEvent'}}
+    {{/if}}
+  {{/each}}
+</div>
+
+<div class="ui horizontal divider" style="font-size:175%;font-family:'Muli'">Planned</div>
+<div class="ui four cards" style="width:100%">
+  {{#each model.user.hosted as |event|}}
+    {{#if event.occurred}}
+      {{#link-to "event" event.id}}{{event-tile event=event}}{{/link-to}}
+    {{else}}
+    {{/if}}
+  {{/each}}
+</div>
