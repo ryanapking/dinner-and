@@ -1,9 +1,46 @@
-  <h1>Create User:</h1>
-  {{input value=email placeholder="email"}}
-  {{input value=password type='password' placeholder="password"}}
-  {{input value=name placeholder="name" id="name"}}
-  {{input value=age placeholder="age" id="age"}}
-  {{input value=zip placeholder="zip" id="zip"}}
-  {{textarea value=about placeholder="about" id="about"}}
-  {{input value=avatar placeholder="avatar" id="avatar"}}
-  <button {{action 'createUser'}}>Create User</button>
+<div class="container" style="margin:10px">
+  <form class="ui form">
+    <h4 class="ui dividing header">Create New Account</h4>
+    <div class="field">
+      <div class="two fields">
+        <div class="field">
+          <label>Email</label>
+          {{input value=email placeholder="email"}}
+        </div>
+        <div class="field">
+          <label>Password</label>
+          {{input value=password type='password' placeholder="password"}}
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <div class="three fields">
+        <div class="field">
+          <label>Username</label>
+          {{input value=name placeholder="username" id="name"}}
+        </div>
+        <div class="field">
+          <label>Age</label>
+          {{input value=age placeholder="age" id="age"}}
+        </div>
+        <div class="field">
+          <label>Zip Code</label>
+          {{input value=zip placeholder="zip code" id="zip"}}
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <div class="sixteen wide field">
+        <label>Tell us a bit about yourself</label>
+        {{textarea value=about id="about"}}
+      </div>
+    </div>
+    <div class="field">
+      <div class="sixteen wide field">
+        <label>Avatar (URL Only)</label>
+        {{input value=avatar placeholder="http://" id="avatar"}}
+      </div>
+    </div>
+  </form>
+  <button class="ui button circular fluid" style="background-color:#EEF3E2;margin-top:10px;" {{action 'createUser'}}>Create User</button>
+</div>
