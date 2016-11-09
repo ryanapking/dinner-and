@@ -4,8 +4,8 @@ export default Ember.Route.extend({
   firebaseApp: Ember.inject.service(),
   actions:{
     snuffleLogin() {
-      console.log('snuffle!');
       var currentThis = this;
+
       this.get('session').open('firebase', {
         provider: 'password',
         email: 'snuffle@email.com',
@@ -14,9 +14,11 @@ export default Ember.Route.extend({
         currentThis.transitionTo('user', currentThis.get('session.uid'));
       });
     },
+
     toggleSidebar(){
       $("#sub-sidebar").sidebar('toggle');
     },
+
     createUser(params, email, password) {
       if (this.get('session.isAuthenticated')) {
         this.get('session').close();
@@ -29,7 +31,6 @@ export default Ember.Route.extend({
       auth.createUserWithEmailAndPassword(email, password).catch(function(error) {
         console.log(error.message);
       }).then(function(user) {
-
         newUser.set('id', user.uid);
         newUser.save().then(function() {
           currentThis.get('session').open('firebase', {
@@ -44,6 +45,7 @@ export default Ember.Route.extend({
       });
       $('#modal_sign_up').modal('hide');
     },
+
     loginUser(params) {
       var currentThis = this;
       this.get('session').open('firebase', {
@@ -54,17 +56,22 @@ export default Ember.Route.extend({
         currentThis.transitionTo('user', currentThis.get('session.uid'));
       });
     },
+
     logout() {
       var currentThis = this;
       this.get('session').close().then(function() {
         currentThis.transitionTo('index');
       });
     },
+
+    //pops up modal
     openSignIn() {
-        $('#modal_sign_in').modal('show'); //pops up modal
+        $('#modal_sign_in').modal('show');
     },
+    //pops up modal
     openSignUp() {
-        $('#modal_sign_up').modal('show'); //pops up modal
+        $('#modal_sign_up').modal('show');
     }
+
   }
 });

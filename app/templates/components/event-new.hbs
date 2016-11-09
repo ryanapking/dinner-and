@@ -1,43 +1,43 @@
 {{#if inNew}}
-<form class="ui form" id="user_new_form" {{action "createEvent" false on="submit"}}>
-  <div class="field">
-    <label>Name</label>
-    <input id="name" name="name" type="text">
-  </div>
-  <div class="field">
-    <label>Max Guests</label>
-    <input id="maxGuests" name="maxGuests" type="number" min="2">
-  </div>
-  <div class="field">
-    <label>Zip Code (Visible to everyone)</label>
-    <input id="zip" name="zip" type="number">
-  </div>
-  <div class="field">
-    <label>Address (Only visible to invited)</label>
-    <input id="address" name="address" type="text">
-  </div>
-  <div class="field">
-    <label>Description</label>
-    <input id="description" name="description" type="text">
-  </div>
-  <div class="field">
-    <label>Event Date</label>
-    <input id="date" name="date" type="date">
-  </div>
-  <div class="field">
-    <label>Event Time</label>
-    <input id="time" name="time" type="time">
-  </div>
-  <div class="field">
-    <label>Splash Image (URL only)</label>
-    <input id="image" name="image" type="text">
-  </div>
-  <div class="ui submit button mini green">Submit</div>
-  <div class="ui error message"></div>
-</form>
-<div class="ui divider"></div>
+  <form class="ui form" id="user_new_form" {{action "createEvent" false on="submit"}}>
+    <div class="field">
+      <label>Name</label>
+      <input id="name" name="name" type="text">
+    </div>
+    <div class="field">
+      <label>Max Guests</label>
+      <input id="maxGuests" name="maxGuests" type="number" min="2">
+    </div>
+    <div class="field">
+      <label>Zip Code (Visible to everyone)</label>
+      <input id="zip" name="zip" type="number">
+    </div>
+    <div class="field">
+      <label>Address (Only visible to invited)</label>
+      <input id="address" name="address" type="text">
+    </div>
+    <div class="field">
+      <label>Description</label>
+      <input id="description" name="description" type="text">
+    </div>
+    <div class="field">
+      <label>Event Date</label>
+      <input id="date" name="date" type="date">
+    </div>
+    <div class="field">
+      <label>Event Time</label>
+      <input id="time" name="time" type="time">
+    </div>
+    <div class="field">
+      <label>Splash Image (URL only)</label>
+      <input id="image" name="image" type="text">
+    </div>
+    <div class="ui submit button mini green">Submit</div>
+    <div class="ui error message"></div>
+  </form>
+  <div class="ui divider"></div>
 {{else}}
-<button class="ui button mini blue" {{action "toggleNew"}}>{{fa-icon "plus"}}</button>
-<br>
+  <button class="ui button mini blue" {{action "toggleNew"}}>{{fa-icon "plus"}}</button>
+  <br>
 {{/if}}
 <button {{action 'createEvent'}}>Test Button</button>

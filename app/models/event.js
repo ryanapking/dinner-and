@@ -13,17 +13,12 @@ export default DS.Model.extend({
   image: DS.attr(),
   date: DS.attr(),
   host: DS.belongsTo('user', { inverse: "hosted", async: true }),
+  // Confirmed Guest
   invited: DS.hasMany('user', { inverse: "invitedTo", async: true }),
   attended: DS.hasMany('user', { inverse: "attended", async: true }),
   reviewsOf: DS.hasMany('review', {async: true}),
-
-  // New Invite System
+  // Requests to join events from host
   inviteRequests: DS.hasMany('user', { inverse: "invitesRequested", async: true}),
+  // Requests to join events from user
   invitesSent: DS.hasMany('user', { inverse: "invitesReceived", async: true})
-  // interests: DS.hasMany('interest', { async: true })
-  //hasmany photos
-  //user belongsto
-  //hasmany invited
-  //hasmany attended
-  //hasmany interests
 });

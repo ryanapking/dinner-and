@@ -16,13 +16,13 @@
   </div>
 </div>
 
+<!-- Change Interests for Authenticated User -->
 {{#if (isLoggedIn model.user.id session.uid)}}
-
   {{interests-edit interests=model.interests user=model.user addInterests="addInterests"}}
-
   {{event-new user=model.user createEvent="createEvent"}}
-<!-- List of Invites to Events -->
-<div class="ui horizontal divider">Your Invites</div>
+
+  <!-- List of Invites to Events -->
+  <div class="ui horizontal divider">Your Invites</div>
   <select id="user-dropdown">
     {{#each model.user.invitesReceived as |invite|}}
       <option value={{invite.id}}>{{invite.name}}</option>
@@ -30,8 +30,9 @@
   </select>
   <button class="ui button mini green" {{action "acceptInvite" model.user}}>Accept Request</button>
 {{/if}}
-<div class="ui horizontal divider">Interests</div>
 
+<!-- Lists of Interests -->
+<div class="ui horizontal divider">Interests</div>
 {{#each model.user.interests as |interest|}}
   <button class="ui button basic blue">{{interest.name}}</button>
 {{/each}}
