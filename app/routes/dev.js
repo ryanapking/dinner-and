@@ -69,11 +69,21 @@ export default Ember.Route.extend({
         index: index
       }
       var newCatalog = this.store.createRecord("catalog", params);
-      newCatalog.save();
+
+      newCatalog.set("id", "masterCatalog")
+      newCatalog.save().then(function() {
+        this.store.findRecord("catalog", "masterCatalog").then(function(response) {
+          response.destroyRecord();
+        }).then(function() {
+          newCatalog.set("id", "masterCatalog")
+          newCatalog.save();
+        });
+      })
+
       // console.log(params);
     },
     fetchIndex(){
-      this.store.findRecord("catalog", "-KW9SnSu7nqs8faubIAO").then(function(response) {
+      this.store.findRecord("catalog", "masterCatalog").then(function(response) {
         console.log(response.get("index"))
       });
 
