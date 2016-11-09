@@ -44,6 +44,10 @@ export default Ember.Route.extend({
       this.get('session').close().then(function() {
         currentThis.transitionTo('index');
       });
+    },
+    testFunc() {
+      console.log("testFunc")
+      $('#modal').modal('toggle'); //pops up modal
     }
   }
 });

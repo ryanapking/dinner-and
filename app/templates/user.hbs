@@ -1,8 +1,21 @@
 <img class="ui segment right floated" src={{model.user.avatar}} style="width:250px;height:auto;">
-<div class="ui horizontal divider">{{model.user.name}}</div>
-{{model.user.age}}<br>
-{{model.user.zip}}<br>
-{{model.user.about}}<br>
+<div class="">
+  <div class="ui horizontal divider" style="font-size:200%;font-family:'Muli'">{{model.user.name}}</div>
+  <div class="ui horizontal segments">
+    <div class="ui segment" style="background-color:#EEF3E2">
+      <p style="font-size:150%;">{{model.user.name}}</p>
+    </div>
+    <div class="ui segment">
+      <p>{{model.user.zip}}</p>
+    </div>
+  </div>
+  <div class="ui horizontal segments">
+    <div class="ui segment">
+      <p>{{model.user.about}}</p>
+    </div>
+  </div>
+</div>
+
 {{#if (isLoggedIn model.user.id session.uid)}}
 
   {{interests-edit interests=model.interests user=model.user addInterests="addInterests"}}
