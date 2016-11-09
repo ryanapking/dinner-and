@@ -1,3 +1,5 @@
+
+
 <img class="ui segment right floated fluid image" src={{model.event.image}} style="height:250px;width:250px;object-fit:cover">
 <img class="ui segment right floated fluid image" src={{model.event.host.avatar}} style="height:250px;width:250px;object-fit:cover">
 <br>
@@ -7,14 +9,15 @@ Max Guests: {{model.event.maxGuests}}<br>
 Zip Code:  {{model.event.zip}}<br>
 When: {{date-stamp model.event.date}}<br>
 
+
+
+
 {{#if model.event.occurred}}
 <!-- Rating System -->
   Attended
     {{#each model.event.attended as |attended|}}
       <p>{{#link-to "user" attended.id}}{{attended.name}}{{/link-to}}</p>
-      {{#if (isLoggedIn attended.id session.uid)}}
-        {{review-new event=model.event createReview="createReview"}}
-      {{/if}}
+
     {{/each}}
 {{else}}
 <!-- List of Guests -->
@@ -32,15 +35,13 @@ When: {{date-stamp model.event.date}}<br>
 
 <!-- Request Invitation as non-host -->
 {{#if session.isAuthenticated}}
-  Request Invite
-  <select id="invite-request">
-    {{#each model.users as |user|}}
-      {{#if (isLoggedIn user.id session.uid)}}
-        <option value={{user.id}}>{{user.name}}</option>
-      {{/if}}
-    {{/each}}
-  </select>
-  <button class="ui button mini green" {{action "requestInvite" model.event}}>Request Invite</button>
+  {{#unless (isInvited session.uid model.event.invited)}}
+    {{#unless (isInvited session.uid model.event.inviteRequests)}}
+      {{#unless (isInvited session.uid model.event.invitesSent)}}
+        <button class="ui button mini green" {{action "requestInvite" model.event}}>Request Invite</button>
+      {{/unless}}
+    {{/unless}}
+  {{/unless}}
 {{/if}}
 
 <!-- Host Invite Section -->
