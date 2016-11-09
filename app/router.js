@@ -12,6 +12,7 @@ Router.map(function() {
   this.route('event', {path: '/event/:event_id'});
   this.route('dev');
   this.route('users');
+  this.route('useredit', {path: '/useredit/:user_id'});
 });
 
 export default Router;
