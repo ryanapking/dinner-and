@@ -1,9 +1,4 @@
-<button {{action 'snuffleLogin'}}>Login as Snuffles</button>
-{{#if showLogin}}
   <h1>Login</h1>
   {{input type="text" value=userEmail placeholder="Email"}}<br>
   {{input type="password" value=userPassword placeholder="Password"}}<br>
   <button {{action "loginUser"}}> Login </button>
-{{else}}
-  <button {{action 'showLogin'}}>Login</button>
-{{/if}}

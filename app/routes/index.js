@@ -48,7 +48,7 @@ export default Ember.Route.extend({
     },
     testFunc() {
         console.log("testFunc")
-        $('#modal').modal('show'); //pops up modal
+        $('#modal_sign_in').modal('show'); //pops up modal
     }
 
   }
