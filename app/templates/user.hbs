@@ -32,7 +32,9 @@
   <div class="ui horizontal divider">Your Invites</div>
   <select id="user-dropdown">
     {{#each model.user.invitesReceived as |invite|}}
-      <option value={{invite.id}}>{{invite.name}}</option>
+      {{#unless (isInvited model.user.id model.event.invited)}}
+        <option value={{invite.id}}>{{invite.name}}</option>
+      {{/unless}}
     {{/each}}
   </select>
   <button class="ui button mini green" {{action "acceptInvite" model.user}}>Accept Request</button>

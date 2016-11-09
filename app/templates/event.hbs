@@ -75,7 +75,9 @@
   <hr>
   <select id="user-dropdown">
     {{#each model.event.inviteRequests as |user|}}
-      <option value={{user.id}}>{{user.name}}</option>
+      {{#unless (isInvited user.id model.event.inviteRequests)}}
+        <option value={{user.id}}>{{user.name}}</option>
+      {{/unless}}
     {{/each}}
   </select>
   <button class="ui button mini green" {{action "addInvited" model.event}}>Assign User to Event</button>
