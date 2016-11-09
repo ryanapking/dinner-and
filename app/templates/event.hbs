@@ -6,7 +6,7 @@
   Host: {{model.event.host.name}}<br>
   Max Guests: {{model.event.maxGuests}}<br>
   Zip Code:  {{model.event.zip}}<br>
-
+  When: {{date-stamp model.event.date}}<br>
   {{#if model.event.occurred}}
   <!-- Append rating system -->
     Attended
