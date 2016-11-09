@@ -1,6 +1,6 @@
   <div class="container" style="margin:10px">
     <form class="ui form" {{action "updateUser" user on="submit"}}>
-      <div class="ui horizontal divider">Edit My Profile</div>
+      <div class="ui horizontal divider">Edit Profile</div>
       <div class="field">
         <div class="three fields">
           <div class="field">
@@ -31,5 +31,7 @@
       </div>
       <button class="ui button circular fluid" style="background-color:#EEF3E2;margin-top:10px;" type="submit">Update Profile</button>
     </form>
+    <div class="ui horizontal divider">Edit Interests</div>
+    {{interests-edit interests=interests user=user addInterests="addInterests"}}
   </div>
 <hr>

@@ -16,6 +16,10 @@ export default Ember.Component.extend({
       };
       this.set('displayUserEdit', false);
       this.sendAction('updateUser', user, params);
+    },
+    addInterests(userID, addInterests, removeInterests){
+      console.log("user-edit")
+      this.sendAction("addInterests", userID, addInterests, removeInterests);
     }
   }
 });
