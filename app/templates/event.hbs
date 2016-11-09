@@ -69,18 +69,18 @@
 <!-- Host Invite Section -->
 {{#if (isLoggedIn model.event.host.id session.uid)}}
   <hr>
-
   <!-- Accept Invitations as Host -->
+
+  {{#if model.event.inviteRequests.length}}
   Accept Invite Requests
   <hr>
-  <select id="user-dropdown">
-    {{#each model.event.inviteRequests as |user|}}
-      {{#unless (isInvited user.id model.event.inviteRequests)}}
+    <select id="user-dropdown">
+      {{#each model.event.inviteRequests as |user|}}
         <option value={{user.id}}>{{user.name}}</option>
-      {{/unless}}
-    {{/each}}
-  </select>
-  <button class="ui button mini green" {{action "addInvited" model.event}}>Assign User to Event</button>
+      {{/each}}
+    </select>
+    <button class="ui button mini green" {{action "addInvited" model.event}}>Assign User to Event</button>
+  {{/if}}
 
   <!-- Send Out Invitations to Users -->
   Send Out Invites
