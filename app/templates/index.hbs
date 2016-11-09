@@ -8,8 +8,8 @@
   <div class="pusher" style="min-height:100vh">
     <div class="ui basic segment">
       <div class="ui grid">
-        <div class="two wide column right floated"><button class="ui circular button mini" style="background-color:#EEF3E2">Sign-Up</button></div>
-        <div class="two wide column"><button class="ui circular mini button " style="background-color:#EEF3E2">Sign-In</button></div>
+        <div class="two wide column right floated"><button class="ui circular button mini" style="background-color:#EEF3E2" {{action "openSignUp"}}>Sign-Up</button></div>
+        <div class="two wide column"><button class="ui circular mini button " style="background-color:#EEF3E2" {{action "openSignIn"}}>Sign-In</button></div>
 
         <!-- <div style="text-align:right;"> -->
           {{#if session.isAuthenticated}}
@@ -18,7 +18,7 @@
             <!-- {{user-create createUser='createUser'}}
             {{user-login loginUser='loginUser'}} -->
           {{/if}}
-          <div class="one wide column"><button class="ui circular mini button " style="background-color:#EEF3E2">{{fa-icon "bars"}}</button></div>
+          <div class="one wide column"><button class="ui circular mini button " style="background-color:#EEF3E2" {{action "toggleSidebar"}}>{{fa-icon "bars"}}</button></div>
           <!-- <button style="background-color:LemonChiffon" class="ui circular button mini right floated"  {{action "toggleSidebar"}}>{{fa-icon "bars"}}</button> -->
         <!-- </div> -->
       </div>
@@ -30,10 +30,9 @@
   </div>
 </div>
 
-
-<div class="ui button" {{action "testFunc"}}>
-  Open Profile
-</div>
 <div class="ui modal" id="modal_sign_in">
   {{user-login loginUser='loginUser'}}
+</div>
+<div class="ui modal" id="modal_sign_up">
+  {{user-create createUser='createUser'}}
 </div>

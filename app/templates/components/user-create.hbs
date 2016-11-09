@@ -1,4 +1,3 @@
-{{#if showCreate}}
   <h1>Create User:</h1>
   {{input value=email placeholder="email"}}
   {{input value=password type='password' placeholder="password"}}
@@ -8,6 +7,3 @@
   {{textarea value=about placeholder="about" id="about"}}
   {{input value=avatar placeholder="avatar" id="avatar"}}
   <button {{action 'createUser'}}>Create User</button>
-{{else}}
-  <button {{action 'showCreate'}}>Create Account</button>
-{{/if}}
