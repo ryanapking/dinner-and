@@ -52,8 +52,6 @@ export default Ember.Component.extend({
           this.removeInterests.splice(this.removeInterests.indexOf(_interest),1);
         }
       }
-      console.log(this.addInterests);
-      console.log(this.removeInterests);
 
     }
   }
