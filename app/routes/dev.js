@@ -4,8 +4,13 @@ export default Ember.Route.extend({
   model(){
     return Ember.RSVP.hash({
       users: this.store.findAll('user'),
-      interests: this.store.findAll('interest')
+      interests: this.store.findAll('interest'),
+      userList: this.store.findRecord("catalog", "masterCatalog").then(function(response) {
+        return response.get('index'); })
     });
+  },
+  afterModel() {
+    console.log(this.get('model.userList'));
   },
 
   actions: {
@@ -60,7 +65,7 @@ export default Ember.Route.extend({
       var index = [];
       users.forEach(function(user) {
         var params = {
-          name: user.get("name"),
+          title: user.get("name"),
           id: user.id
         };
         index.push(params);
@@ -83,8 +88,12 @@ export default Ember.Route.extend({
       // console.log(params);
     },
     fetchIndex(){
+      var thisObj = this;
       this.store.findRecord("catalog", "masterCatalog").then(function(response) {
-        console.log(response.get("index"))
+        console.log(response.get("index"));
+        thisObj.set('userList', response.get("index"));
+        console.log("___");
+        console.log(thisObj.get("userList"));
       });
 
     }
