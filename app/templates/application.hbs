@@ -10,13 +10,17 @@
       <div class="pusher" style="min-height:100vh">
         <div class="ui basic segment">
           <div class="ui grid">
-            <div class="two wide column right floated"><button class="ui circular button mini" style="background-color:#EEF3E2" {{action "openSignUp"}}>Sign-Up</button></div>
-            <div class="two wide column"><button class="ui circular mini button " style="background-color:#EEF3E2" {{action "openSignIn"}}>Sign-In</button></div>
+            <!-- <div class="two wide column right floated"><button class="ui circular button large" style="background-color:#EEF3E2" {{action "openSignUp"}}>Sign-Up</button></div>
+            <div class="two wide column"><button class="ui circular large button " style="background-color:#EEF3E2" {{action "openSignIn"}}>Sign-In</button></div> -->
               {{#if session.isAuthenticated}}
-                <button {{action 'logout'}}>Logout</button>
+                <div class="two wide column right floated">
+                  <button class="ui circular large button" style="background-color:#EEF3E2" {{action 'logout'}}>Logout</button>
+                </div>
               {{else}}
+                <div class="two wide column right floated"><button class="ui circular button large" style="background-color:#EEF3E2" {{action "openSignUp"}}>Sign-Up</button></div>
+                <div class="two wide column"><button class="ui circular large button " style="background-color:#EEF3E2" {{action "openSignIn"}}>Sign-In</button></div>
               {{/if}}
-              <div class="one wide column"><button class="ui circular mini button " style="background-color:#EEF3E2" {{action "toggleSidebar"}}>{{fa-icon "bars"}}</button></div>
+              <div class="one wide column"><button class="ui circular large button " style="background-color:#EEF3E2" {{action "toggleSidebar"}}>{{fa-icon "bars"}}</button></div>
           </div>
           <br><br>
             {{outlet}}
@@ -36,13 +40,17 @@
       <div class="pusher" style="min-height:100vh">
         <div class="ui basic segment">
           <div class="ui grid">
-            <div class="two wide column right floated"><button class="ui circular button mini" style="background-color:#EEF3E2" {{action "openSignUp"}}>Sign-Up</button></div>
-            <div class="two wide column"><button class="ui circular mini button " style="background-color:#EEF3E2" {{action "openSignIn"}}>Sign-In</button></div>
+            <!-- <div class="two wide column right floated"><button class="ui circular button large" style="background-color:#EEF3E2" {{action "openSignUp"}}>Sign-Up</button></div>
+            <div class="two wide column"><button class="ui circular large button " style="background-color:#EEF3E2" {{action "openSignIn"}}>Sign-In</button></div> -->
               {{#if session.isAuthenticated}}
-                <button {{action 'logout'}}>Logout</button>
+                <div class="two wide column right floated">
+                  <button class="ui circular large button " style="background-color:#EEF3E2" {{action 'logout'}}>Logout</button>
+                </div>
               {{else}}
+                <div class="two wide column right floated"><button class="ui circular button large" style="background-color:#EEF3E2" {{action "openSignUp"}}>Sign-Up</button></div>
+                <div class="two wide column"><button class="ui circular large button " style="background-color:#EEF3E2" {{action "openSignIn"}}>Sign-In</button></div>
               {{/if}}
-              <div class="one wide column"><button class="ui circular mini button " style="background-color:#EEF3E2" {{action "toggleSidebar"}}>{{fa-icon "bars"}}</button></div>
+              <div class="one wide column"><button class="ui circular large button " style="background-color:#EEF3E2" {{action "toggleSidebar"}}>{{fa-icon "bars"}}</button></div>
           </div>
           <br><br>
             {{outlet}}
