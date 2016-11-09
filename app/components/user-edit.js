@@ -2,6 +2,59 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   displayUserEdit: false,
+  didRender(){
+    $('#user_edit_form')
+    .form({
+      on: 'blur',
+      fields: {
+        name_edit: {
+          identifier  : 'name_edit',
+          rules: [
+            {
+              type   : 'empty',
+              prompt : 'Please enter a name'
+            }
+          ]
+        },
+        age_edit: {
+          identifier  : 'age_edit',
+          rules: [
+            {
+              type   : 'empty',
+              prompt : 'Please enter a number'
+            }
+          ]
+        },
+        zip_edit: {
+          identifier  : 'zip_edit',
+          rules: [
+            {
+              type   : 'empty',
+              prompt : 'Please enter a zip code'
+            }
+          ]
+        },
+        about_edit: {
+          identifier  : 'about_edit',
+          rules: [
+            {
+              type   : 'empty',
+              prompt : 'Please tell us something about you'
+            }
+          ]
+        },
+        avatar_edit: {
+          identifier  : 'avatar_edit',
+          rules: [
+            {
+              type   : 'empty',
+              prompt : 'Please enter an image URL'
+            }
+          ]
+        },
+      }
+    });
+  },
   actions: {
     showUserEdit: function() {
       this.set('displayUserEdit', true);

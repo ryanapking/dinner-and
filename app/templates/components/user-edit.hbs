@@ -1,27 +1,27 @@
 {{#if (isLoggedIn user.id sessionID)}}
   <div class="container" style="margin:10px">
-    <form class="ui form" {{action "updateUser" user on="submit"}}>
+    <form class="ui form" id="user_edit_form" {{action "updateUser" user on="submit"}}>
       <div class="ui horizontal divider">Edit Profile</div>
       <div class="field">
         <div class="three fields">
           <div class="field">
             <label>Username</label>
-            {{input required="required" value=user.name placeholder="username" id="name_edit"}}
+            {{input value=user.name placeholder="username" id="name_edit"}}
           </div>
           <div class="field">
             <label>Age</label>
-            {{input required="required" value=user.age placeholder="age" id="age_edit"}}
+            {{input type="number" value=user.age placeholder="age" id="age_edit"}}
           </div>
           <div class="field">
             <label>Zip Code</label>
-            {{input required="required" value=user.zip placeholder="zip code" id="zip_edit"}}
+            {{input value=user.zip placeholder="zip code" id="zip_edit"}}
           </div>
         </div>
       </div>
       <div class="field">
         <div class="sixteen wide field">
           <label>Tell us a bit about yourself</label>
-          {{textarea required="required" value=user.about id="about_edit"}}
+          {{textarea value=user.about id="about_edit"}}
         </div>
       </div>
       <div class="field">
@@ -30,6 +30,7 @@
           {{input value=user.avatar placeholder="http://" id="avatar_edit"}}
         </div>
       </div>
+      <div class="ui error message"></div>
       <button class="ui button circular fluid" style="background-color:#EEF3E2;margin-top:10px;" type="submit">Update Profile</button>
     </form>
     <div class="ui horizontal divider">Edit Interests</div>
