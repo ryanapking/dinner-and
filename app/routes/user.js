@@ -1,15 +1,13 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  addInterests:[],
-
   model(params){
     return Ember.RSVP.hash({
       user: this.store.findRecord('user', params.user_id),
       interests: this.store.findAll('interest')
     });
   },
-
+  addInterests:[],
   actions:{
     acceptInvite(user){
       var eventID = $("#user-dropdown").val();

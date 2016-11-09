@@ -29,38 +29,45 @@
   {{event-new user=model.user createEvent="createEvent"}}
 
   <!-- List of Invites to Events -->
-  <div class="ui horizontal divider">Your Invites</div>
-  <select id="user-dropdown">
-    {{#each model.user.invitesReceived as |invite|}}
-      <option value={{invite.id}}>{{invite.name}}</option>
-    {{/each}}
-  </select>
-  <button class="ui button mini green" {{action "acceptInvite" model.user}}>Accept Request</button>
+  {{#if model.user.invitesReceived.length}}
+    <div class="ui horizontal divider">Your Invites</div>
+    <select id="user-dropdown">
+      {{#each model.user.invitesReceived as |invite|}}
+        <option value={{invite.id}}>{{invite.name}}</option>
+      {{/each}}
+    </select>
+    <button class="ui button mini green" {{action "acceptInvite" model.user}}>Accept Request</button>
+  {{/if}}
 {{/if}}
 
 <!-- Lists of Interests -->
-<div class="ui horizontal divider" style="font-size:175%;font-family:'Muli'">Interests</div>
-{{#each model.user.interests as |interest|}}
-  <button class="ui button basic blue">{{interest.name}}</button>
-{{/each}}
-
-<div class="ui horizontal divider" style="font-size:175%;font-family:'Muli'">Hosted</div>
-
-<div class="ui four cards" style="width:100%">
-  {{#each model.user.hosted as |event|}}
-    {{#if event.occurred}}
-    {{else}}
-      {{event-tile event=event mapEvent='mapEvent'}}
-    {{/if}}
+{{#if model.user.interests.length}}
+  <div class="ui horizontal divider" style="font-size:175%;font-family:'Muli'">Interests</div>
+  {{#each model.user.interests as |interest|}}
+    <button class="ui button basic blue">{{interest.name}}</button>
   {{/each}}
-</div>
+{{/if}}
 
-<div class="ui horizontal divider" style="font-size:175%;font-family:'Muli'">Planned</div>
+<!-- List of Hosted Events -->
+{{#if pastEvents}}
+  <div class="ui horizontal divider" style="font-size:175%;font-family:'Muli'">Hosted</div>
+  <div class="ui four cards" style="width:100%">
+    {{#each model.user.hosted as |event|}}
+      {{#if event.occurred}}
+        {{event-tile event=event mapEvent='mapEvent'}}
+      {{else}}
+      {{/if}}
+    {{/each}}
+  </div>
+{{/if}}
+
+
+<div id='plannedHeader' class="ui horizontal divider" style="font-size:175%;font-family:'Muli'">Planned</div>
 <div class="ui four cards" style="width:100%">
   {{#each model.user.hosted as |event|}}
-    {{#if event.occurred}}
+    {{#unless event.occurred}}
       {{#link-to "event" event.id}}{{event-tile event=event}}{{/link-to}}
     {{else}}
-    {{/if}}
+    {{/unless}}
   {{/each}}
 </div>
