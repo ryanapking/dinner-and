@@ -37,7 +37,7 @@ export default Ember.Route.extend({
       })
     },
     requestInvite(event){
-      var userID = $("#invite-request").val();
+      var userID = this.get('session.uid');
       console.log(event.get("name"));
       console.log(userID);
 
