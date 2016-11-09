@@ -1,39 +1,41 @@
-<img class="ui segment right floated" src={{model.user.avatar}} style="width:250px;height:auto;">
-<div class="">
-  <div class="ui horizontal divider" style="font-size:200%;font-family:'Muli'">
-    {{model.user.name}}&nbsp;
-    {{#link-to "useredit" model.user.id}}{{fa-icon "fa-pencil-square-o"}}{{/link-to}}
-  </div>
-  <div class="ui horizontal segments">
-    <div class="ui segment" style="background-color:#EEF3E2;text-align:center;">
-      <p style="font-size:150%;">Age</p>
-      {{model.user.age}}
+<div class="ui segment basic" style="min-height:250px">
+  <img class="ui segment right floated" src={{model.user.avatar}} style="width:250px;height:auto;">
+  <div class="">
+    <div class="ui horizontal divider" style="font-size:200%;font-family:'Muli'">
+      {{model.user.name}}
+      {{#if (isLoggedIn model.user.id session.uid)}}
+        &nbsp;
+        {{#link-to "useredit" model.user.id}}{{fa-icon "fa-pencil-square-o"}}{{/link-to}}
+      {{/if}}
     </div>
-    <div class="ui segment" style="background-color:#EEF3E2;text-align:center;">
-      <p style="font-size:150%;">Zip</p>
-      {{model.user.zip}}
+    <div class="ui horizontal segments">
+      <div class="ui segment" style="background-color:#EEF3E2;text-align:center;">
+        <p style="font-size:150%;">Age</p>
+        {{model.user.age}}
+      </div>
+      <div class="ui segment" style="background-color:#EEF3E2;text-align:center;">
+        <p style="font-size:150%;">Zip</p>
+        {{model.user.zip}}
+      </div>
     </div>
+    <p>{{model.user.about}}</p>
   </div>
-  <!-- <div class="ui horizontal segments">
-    <div class="ui segment"> -->
-      <p>{{model.user.about}}</p>
-    <!-- </div>
-  </div> -->
-</div>
 
+</div>
 
 <!-- Change Interests for Authenticated User -->
 {{#if (isLoggedIn model.user.id session.uid)}}
   {{user-edit user=model.user updateUser="updateUser"}}
-  {{interests-edit interests=model.interests user=model.user addInterests="addInterests"}}
   {{event-new user=model.user createEvent="createEvent"}}
 
   <!-- List of Invites to Events -->
   {{#if model.user.invitesReceived.length}}
-    <div class="ui horizontal divider">Your Invites</div>
+    <div class="ui horizontal divider" style="font-size:175%;font-family:'Muli'">Your Invites</div>
     <select id="user-dropdown">
       {{#each model.user.invitesReceived as |invite|}}
-        <option value={{invite.id}}>{{invite.name}}</option>
+        {{#unless (isInvited model.user.id model.event.invited)}}
+          <option value={{invite.id}}>{{invite.name}}</option>
+        {{/unless}}
       {{/each}}
     </select>
     <button class="ui button mini green" {{action "acceptInvite" model.user}}>Accept Request</button>

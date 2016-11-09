@@ -44,40 +44,14 @@ export default Ember.Route.extend({
       });
     },
 
-    addInterests(_userID, _addInterests, _removeInterests){
-      var storage = this.store;
-      var user;
-      var toAdd = _addInterests;
-      var toRemove = _removeInterests;
-
-      storage.findRecord("user", _userID).then(function(response) {
-        user = response;
-      }).then(function() {
-        toAdd.forEach(function(interest) {
-          interest.get("users").addObject(user);
-          user.get("interests").addObject(interest);
-        })
-        toRemove.forEach(function(interest) {
-          interest.get("users").removeObject(user);
-          user.get("interests").removeObject(interest);
-        })
-      }).then(function() {
-        user.save().then(function() {
-          toAdd.forEach(function(interest) {
-            interest.save();
-          });
-        })
-      })
-    },
-
-    togglebutton(_interest, _interestID){
-      if(!($("#" + _interestID).hasClass("basic"))){
-        $("#" + _interestID).addClass("basic");
-        this.addInterests.splice(this.addInterests.indexOf(_interest),1);
-      } else {
-        this.addInterests.push(_interest);
-        $("#" + _interestID).removeClass("basic");
-      }
-    }
+    // togglebutton(_interest, _interestID){
+    //   if(!($("#" + _interestID).hasClass("basic"))){
+    //     $("#" + _interestID).addClass("basic");
+    //     this.addInterests.splice(this.addInterests.indexOf(_interest),1);
+    //   } else {
+    //     this.addInterests.push(_interest);
+    //     $("#" + _interestID).removeClass("basic");
+    //   }
+    // }
   }
 });
