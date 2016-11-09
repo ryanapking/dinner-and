@@ -1,34 +1,30 @@
-<!-- <div> -->
-  <img class="ui segment right floated fluid image" src={{model.event.image}} style="height:250px;width:250px;object-fit:cover">
-  <img class="ui segment right floated fluid image" src={{model.event.host.avatar}} style="height:250px;width:250px;object-fit:cover">
-  <br>
-  Name: {{model.event.name}}<br>
-  Host: {{model.event.host.name}}<br>
-  Max Guests: {{model.event.maxGuests}}<br>
-  Zip Code:  {{model.event.zip}}<br>
-  When: {{date-stamp model.event.date}}<br>
-  {{#if model.event.occurred}}
-  <!-- Append rating system -->
-    Attended
+<img class="ui segment right floated fluid image" src={{model.event.image}} style="height:250px;width:250px;object-fit:cover">
+<img class="ui segment right floated fluid image" src={{model.event.host.avatar}} style="height:250px;width:250px;object-fit:cover">
+<br>
+Name: {{model.event.name}}<br>
+Host: {{model.event.host.name}}<br>
+Max Guests: {{model.event.maxGuests}}<br>
+Zip Code:  {{model.event.zip}}<br>
+When: {{date-stamp model.event.date}}<br>
 
-      {{#each model.event.attended as |attended|}}
-        <p>{{#link-to "user" attended.id}}{{attended.name}}{{/link-to}}</p>
-        <!-- {{attended-tile}} -->
-        {{#if (isLoggedIn attended.id session.uid)}}
-          {{review-new event=model.event createReview="createReview"}}
-        {{/if}}
-      {{/each}}
+{{#if model.event.occurred}}
+<!-- Rating System -->
+  Attended
+    {{#each model.event.attended as |attended|}}
+      <p>{{#link-to "user" attended.id}}{{attended.name}}{{/link-to}}</p>
+      {{#if (isLoggedIn attended.id session.uid)}}
+        {{review-new event=model.event createReview="createReview"}}
+      {{/if}}
+    {{/each}}
+{{else}}
+<!-- List of Guests -->
+  <ul>
+    {{#each model.event.invited as |invited|}}
+      <li>{{#link-to "user" invited.id}}{{invited.name}}{{/link-to}}</li>
+    {{/each}}
+  </ul>
+{{/if}}
 
-
-
-  {{else}}
-    <ul>
-      {{#each model.event.invited as |invited|}}
-        <li>{{#link-to "user" invited.id}}{{invited.name}}{{/link-to}}</li>
-      {{/each}}
-    </ul>
-  {{/if}}
-<!-- </div> -->
 <div style="margin-top:200px">
   {{model.event.description}}
 </div>
@@ -39,9 +35,9 @@
   Request Invite
   <select id="invite-request">
     {{#each model.users as |user|}}
-    {{#if (isLoggedIn user.id session.uid)}}
-      <option value={{user.id}}>{{user.name}}</option>
-    {{/if}}
+      {{#if (isLoggedIn user.id session.uid)}}
+        <option value={{user.id}}>{{user.name}}</option>
+      {{/if}}
     {{/each}}
   </select>
   <button class="ui button mini green" {{action "requestInvite" model.event}}>Request Invite</button>
@@ -80,5 +76,8 @@
     <button class="ui button" {{action "eventOccurred" model.event}}>Event Occurred</button>
   {{/if}}
 {{/if}}
+
 {{log model.event}}
+
+<!-- Map of Events -->
 {{address-map event=model.event lat=model.event.lat lng=model.event.lng}}
