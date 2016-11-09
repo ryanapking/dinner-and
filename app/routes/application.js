@@ -55,6 +55,7 @@ export default Ember.Route.extend({
       }).then(function() {
         currentThis.transitionTo('user', currentThis.get('session.uid'));
       });
+      $('#modal_sign_in').modal('hide');
     },
 
     logout() {

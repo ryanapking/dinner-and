@@ -1,7 +1,19 @@
 <div class="container" style="margin:10px">
-  <h1>Login</h1>
-  {{input type="text" value=userEmail placeholder="Email"}}<br>
-  {{input type="password" value=userPassword placeholder="Password"}}<br>
-  <button {{action "loginUser"}}> Login </button>
-  <button {{action 'snuffleLogin'}}>Snuffle Login</button>
+  <form class="ui form">
+    <h4 class="ui dividing header">Sign In</h4>
+    <div class="field">
+      <div class="two fields">
+        <div class="field">
+          <label>Email</label>
+          {{input type="text" value=userEmail placeholder="email"}}
+        </div>
+        <div class="field">
+          <label>Password</label>
+          {{input type="password" value=userPassword placeholder="password"}}
+        </div>
+      </div>
+    </div>
+  </form>
+  <button class="ui button circular fluid" style="background-color:#EEF3E2;margin-top:10px;" {{action "loginUser"}}>Sign In</button>
+  <button class="ui button circular fluid" style="background-color:#EEF3E2;margin-top:10px;" {{action "snuffleLogin"}}>Snuffles, Son!</button>
 </div>
