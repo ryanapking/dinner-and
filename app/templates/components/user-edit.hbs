@@ -1,3 +1,4 @@
+{{#if (isLoggedIn user.id sessionID)}}
   <div class="container" style="margin:10px">
     <form class="ui form" {{action "updateUser" user on="submit"}}>
       <div class="ui horizontal divider">Edit Profile</div>
@@ -34,4 +35,4 @@
     <div class="ui horizontal divider">Edit Interests</div>
     {{interests-edit interests=interests user=user addInterests="addInterests"}}
   </div>
-<hr>
+{{/if}}

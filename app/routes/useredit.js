@@ -19,9 +19,7 @@ export default Ember.Route.extend({
       this.transitionTo('user', user.id);
     },
     addInterests(_userID, _addInterests, _removeInterests){
-      console.log(_userID)
-      console.log(_addInterests)
-      console.log(_removeInterests)
+      var page = this;
       var storage = this.store;
       var user;
       var toAdd = _addInterests;
@@ -44,6 +42,8 @@ export default Ember.Route.extend({
             interest.save();
           });
         })
+      }).then(function() {
+        page.transitionTo('user', _userID);
       })
     },
   }

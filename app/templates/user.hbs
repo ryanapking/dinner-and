@@ -1,8 +1,11 @@
 <img class="ui segment right floated" src={{model.user.avatar}} style="width:250px;height:auto;">
 <div class="">
   <div class="ui horizontal divider" style="font-size:200%;font-family:'Muli'">
-    {{model.user.name}}&nbsp;
-    {{#link-to "useredit" model.user.id}}{{fa-icon "fa-pencil-square-o"}}{{/link-to}}
+    {{model.user.name}}
+    {{#if (isLoggedIn model.user.id session.uid)}}
+      &nbsp;
+      {{#link-to "useredit" model.user.id}}{{fa-icon "fa-pencil-square-o"}}{{/link-to}}
+    {{/if}}
   </div>
   <div class="ui horizontal segments">
     <div class="ui segment" style="background-color:#EEF3E2;text-align:center;">
