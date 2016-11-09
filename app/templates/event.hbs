@@ -1,4 +1,3 @@
-{{date-stamp model.event.date}}
 <!-- <div> -->
   <img class="ui segment right floated fluid image" src={{model.event.image}} style="height:250px;width:250px;object-fit:cover">
   <img class="ui segment right floated fluid image" src={{model.event.host.avatar}} style="height:250px;width:250px;object-fit:cover">
@@ -7,7 +6,7 @@
   Host: {{model.event.host.name}}<br>
   Max Guests: {{model.event.maxGuests}}<br>
   Zip Code:  {{model.event.zip}}<br>
-
+  When: {{date-stamp model.event.date}}<br>
   {{#if model.event.occurred}}
   <!-- Append rating system -->
     Attended

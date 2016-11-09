@@ -5,7 +5,6 @@ export default Ember.Component.extend({
   sortedByZip: Ember.A(),
   willRender() {
     var events = this.get('events');
-    console.log("made it into didRender");
     var zipcodes = Ember.A();
     events.forEach(function(event) {
       var eventZip = event.get('zip');
@@ -29,7 +28,6 @@ export default Ember.Component.extend({
         zipcodes.pushObject(newObject);
       }
     })
-    console.log(zipcodes);
     this.set('sortedByZip', zipcodes);
   }
 });

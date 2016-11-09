@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 export function dateStamp(params/*, hash*/) {
-  console.log(params[0]);
   var dateStamp = new Date(params[0]);
   var yr = dateStamp.getFullYear();
   var mo = dateStamp.getMonth() + 1;
