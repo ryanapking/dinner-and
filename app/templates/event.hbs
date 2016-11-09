@@ -1,34 +1,31 @@
+<div class="ui segment basic" style="min-height:250px">
+  <img class="ui segment right floated fluid image" src={{model.event.image}} style="height:250px;width:250px;object-fit:cover">
+  <img class="ui segment right floated fluid image" src={{model.event.host.avatar}} style="height:250px;width:250px;object-fit:cover">
 
+  <div class="ui horizontal divider" style="font-size:200%;font-family:'Muli'">{{model.event.name}}</div>
 
-<img class="ui segment right floated fluid image" src={{model.event.image}} style="height:250px;width:250px;object-fit:cover">
-<img class="ui segment right floated fluid image" src={{model.event.host.avatar}} style="height:250px;width:250px;object-fit:cover">
-
-<div class="ui horizontal divider" style="font-size:200%;font-family:'Muli'">{{model.event.name}}</div>
-
-<div class="ui horizontal segments">
-  <div class="ui segment" style="background-color:#EEF3E2;text-align:center;">
-    <p style="font-size:150%;">Host</p>
-    {{model.event.host.name}}
+  <div class="ui horizontal segments">
+    <div class="ui segment" style="background-color:#EEF3E2;text-align:center;">
+      <p style="font-size:150%;">Host</p>
+      {{model.event.host.name}}
+    </div>
+    <div class="ui segment" style="background-color:#EEF3E2;text-align:center;">
+      <p style="font-size:150%;">Max Guests</p>
+      {{model.event.maxGuests}}
+    </div>
   </div>
-  <div class="ui segment" style="background-color:#EEF3E2;text-align:center;">
-    <p style="font-size:150%;">Max Guests</p>
-    {{model.event.maxGuests}}
+  <div class="ui horizontal segments">
+    <div class="ui segment" style="background-color:#EEF3E2;text-align:center;">
+      <p style="font-size:150%;">Where</p>
+      {{model.event.zip}}
+    </div>
+    <div class="ui segment" style="background-color:#EEF3E2;text-align:center;">
+      <p style="font-size:150%;">When</p>
+      {{date-stamp model.event.date}}
+    </div>
   </div>
+  {{model.event.description}}
 </div>
-<div class="ui horizontal segments">
-  <div class="ui segment" style="background-color:#EEF3E2;text-align:center;">
-    <p style="font-size:150%;">Where</p>
-    {{model.event.zip}}
-  </div>
-  <div class="ui segment" style="background-color:#EEF3E2;text-align:center;">
-    <p style="font-size:150%;">When</p>
-    {{date-stamp model.event.date}}
-  </div>
-</div>
-{{model.event.description}}
-
-
-
 
 {{#if model.event.occurred}}
 <!-- Rating System -->
@@ -49,18 +46,13 @@
   </div>
 {{/if}}
 
-<div style="margin-top:200px">
-  <h3>Description:</h3>
-  {{model.event.description}}
-</div>
-
-<div class="ui horizontal divider" style="font-size:175%;font-family:'Muli'">Whereabouts</div>
 <!-- Request Invitation as non-host -->
 {{#if session.isAuthenticated}}
   {{#unless (isInvited session.uid model.event.invited)}}
     {{#unless (isInvited session.uid model.event.inviteRequests)}}
       {{#unless (isInvited session.uid model.event.invitesSent)}}
-        <button class="ui button mini green" {{action "requestInvite" model.event}}>Request Invite</button>
+        <br>
+        <button class="ui button mini circular green fluid" {{action "requestInvite" model.event}}>Request Invite</button>
       {{/unless}}
     {{/unless}}
   {{/unless}}
@@ -68,11 +60,8 @@
 
 <!-- Host Invite Section -->
 {{#if (isLoggedIn model.event.host.id session.uid)}}
-  <hr>
-
+<div class="ui horizontal divider" style="font-size:175%;font-family:'Muli'">Invitations and Requests</div>
   <!-- Accept Invitations as Host -->
-  Accept Invite Requests
-  <hr>
   <select id="user-dropdown">
     {{#each model.event.inviteRequests as |user|}}
       {{#unless (isInvited user.id model.event.inviteRequests)}}
@@ -80,30 +69,30 @@
       {{/unless}}
     {{/each}}
   </select>
-  <button class="ui button mini green" {{action "addInvited" model.event}}>Assign User to Event</button>
+  <button class="ui button mini green circular" {{action "addInvited" model.event}} style="margin-bottom:5px;">Accept Request</button>
 
   <!-- Send Out Invitations to Users -->
-  Send Out Invites
 
-  {{#ui-search source=model.userList onSearchQuery=(action (mut query)) onSelect=(action (mut selected))}}
+  {{#ui-search source=model.userList onSearchQuery=(action (mut query)) onSelect=(action (mut selected)) style="margin-top:5px;"}}
     <input class="prompt" type="text" placeholder="Users to invite...">
     <div class="results"></div>
+    <button class="ui button circular mini green" {{action "sendInvite" model.event}} style="margin-top:5px;">Send Invite</button>
   {{/ui-search}}
 
-  <button class="ui button mini green" {{action "sendInvite" model.event}}>Send Invite</button>
-
   <!-- Mark Invitees as Attended -->
-  <hr>
   {{#if model.event.occurred}}
   {{else}}
+    <div class="ui horizontal divider" style="font-size:175%;font-family:'Muli'">Wrap-up</div>
+    <div style="text-align:center;">Select the guests that attended</div>
     {{#each model.event.invited as |invited|}}
-      <button id={{invited.id}} class="ui button basic violet" {{action "togglebutton" invited invited.id}}>{{invited.name}}</button>
+      <button id={{invited.id}} class="ui button basic" {{action "togglebutton" invited invited.id}}>{{invited.name}}</button>
     {{/each}}
-    <button class="ui button" {{action "eventOccurred" model.event}}>Event Occurred</button>
+    <button class="ui button mini circular green fluid" {{action "eventOccurred" model.event}} style="margin-top:5px;">Event Occurred</button>
   {{/if}}
 {{/if}}
 
 {{log model.event}}
 
 <!-- Map of Events -->
+<div class="ui horizontal divider" style="font-size:175%;font-family:'Muli'">Whereabouts</div>
 {{address-map event=model.event lat=model.event.lat lng=model.event.lng}}

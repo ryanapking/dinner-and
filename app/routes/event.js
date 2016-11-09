@@ -73,11 +73,13 @@ export default Ember.Route.extend({
       //
       if(!($("#" + _invitedID).hasClass("basic"))){
         $("#" + _invitedID).addClass("basic");
+        $("#" + _invitedID).removeClass("blue");
         this.addAttended.splice(this.addAttended.indexOf(_invited),1);
       } else {
         this.addAttended.push(_invited);
         console.log(this.addAttended);
         $("#" + _invitedID).removeClass("basic");
+        $("#" + _invitedID).addClass("blue");
       }
     },
     createReview(_userID, _params){
