@@ -29,7 +29,7 @@ export default Ember.Route.extend({
       auth.createUserWithEmailAndPassword(email, password).catch(function(error) {
         console.log(error.message);
       }).then(function(user) {
-  
+
         newUser.set('id', user.uid);
         newUser.save().then(function() {
           currentThis.get('session').open('firebase', {
@@ -42,6 +42,7 @@ export default Ember.Route.extend({
           });
         });
       });
+      $('#modal_sign_up').modal('hide');
     },
     loginUser(params) {
       var currentThis = this;
