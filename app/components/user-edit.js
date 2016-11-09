@@ -39,7 +39,7 @@ export default Ember.Component.extend({
           rules: [
             {
               type   : 'empty',
-              prompt : 'Please tell us something about you'
+              prompt : 'Please tell us something about yourself'
             }
           ]
         },
