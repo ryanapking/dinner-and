@@ -67,9 +67,11 @@ export default Ember.Route.extend({
         currentThis.transitionTo('index');
       });
     },
-    testFunc() {
-      console.log("testFunc")
-      $('#modal').modal('toggle'); //pops up modal
+    openSignIn() {
+        $('#modal_sign_in').modal('show'); //pops up modal
+    },
+    openSignUp() {
+        $('#modal_sign_up').modal('show'); //pops up modal
     }
   }
 });

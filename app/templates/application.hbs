@@ -1,9 +1,76 @@
 {{#if (routeReturn currentPath)}}
   <div style="background-image:url('/assets/images/DinnerAnd_Splash.png');background-size:cover;background-position:center;min-height:100vh;font-family:'Lato'">
-    {{outlet}}
+    <div class="ui pushable component context">
+      {{#ui-sidebar class="menu top inline horizontal" context=".component.context" id="sub-sidebar"}}
+        <span class="item">{{#link-to 'index'}}Home{{/link-to}}</span>
+        <span class="item">{{#link-to 'dev'}}Dev{{/link-to}}</span>
+        <span class="item">{{#link-to 'events'}}Events{{/link-to}}</span>
+        <span class="item">{{#link-to 'users'}}Users{{/link-to}}</span>
+      {{/ui-sidebar}}
+      <div class="pusher" style="min-height:100vh">
+        <div class="ui basic segment">
+          <div class="ui grid">
+            <div class="two wide column right floated"><button class="ui circular button mini" style="background-color:#EEF3E2" {{action "openSignUp"}}>Sign-Up</button></div>
+            <div class="two wide column"><button class="ui circular mini button " style="background-color:#EEF3E2" {{action "openSignIn"}}>Sign-In</button></div>
+
+            <!-- <div style="text-align:right;"> -->
+              {{#if session.isAuthenticated}}
+                <button {{action 'logout'}}>Logout</button>
+              {{else}}
+                <!-- {{user-create createUser='createUser'}}
+                {{user-login loginUser='loginUser'}} -->
+              {{/if}}
+              <div class="one wide column"><button class="ui circular mini button " style="background-color:#EEF3E2" {{action "toggleSidebar"}}>{{fa-icon "bars"}}</button></div>
+              <!-- <button style="background-color:LemonChiffon" class="ui circular button mini right floated"  {{action "toggleSidebar"}}>{{fa-icon "bars"}}</button> -->
+            <!-- </div> -->
+          </div>
+          <br><br>
+          <!-- <div class="ui segment" style="min-height:100vh"> -->
+            {{outlet}}
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
   </div>
 {{else}}
   <div style="min-height:100vh;background-color:#FFFFFE;font-family:'Lato'">
-    {{outlet}}
+    <div class="ui pushable component context">
+      {{#ui-sidebar class="menu top inline horizontal" context=".component.context" id="sub-sidebar"}}
+        <span class="item">{{#link-to 'index'}}Home{{/link-to}}</span>
+        <span class="item">{{#link-to 'dev'}}Dev{{/link-to}}</span>
+        <span class="item">{{#link-to 'events'}}Events{{/link-to}}</span>
+        <span class="item">{{#link-to 'users'}}Users{{/link-to}}</span>
+      {{/ui-sidebar}}
+      <div class="pusher" style="min-height:100vh">
+        <div class="ui basic segment">
+          <div class="ui grid">
+            <div class="two wide column right floated"><button class="ui circular button mini" style="background-color:#EEF3E2" {{action "openSignUp"}}>Sign-Up</button></div>
+            <div class="two wide column"><button class="ui circular mini button " style="background-color:#EEF3E2" {{action "openSignIn"}}>Sign-In</button></div>
+
+            <!-- <div style="text-align:right;"> -->
+              {{#if session.isAuthenticated}}
+                <button {{action 'logout'}}>Logout</button>
+              {{else}}
+                <!-- {{user-create createUser='createUser'}}
+                {{user-login loginUser='loginUser'}} -->
+              {{/if}}
+              <div class="one wide column"><button class="ui circular mini button " style="background-color:#EEF3E2" {{action "toggleSidebar"}}>{{fa-icon "bars"}}</button></div>
+              <!-- <button style="background-color:LemonChiffon" class="ui circular button mini right floated"  {{action "toggleSidebar"}}>{{fa-icon "bars"}}</button> -->
+            <!-- </div> -->
+          </div>
+          <br><br>
+          <!-- <div class="ui segment" style="min-height:100vh"> -->
+            {{outlet}}
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
   </div>
 {{/if}}
+
+<div class="ui modal" id="modal_sign_in">
+  {{user-login loginUser='loginUser'}}
+</div>
+<div class="ui modal" id="modal_sign_up">
+  {{user-create createUser='createUser'}}
+</div>
