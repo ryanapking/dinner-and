@@ -1,11 +1,5 @@
-New User
-<br>
-{{input value=name placeholder="name" id="name"}}
-{{input value=age placeholder="age" id="age"}}
-{{input value=zip placeholder="zip" id="zip"}}
-{{textarea value=about placeholder="about" id="about"}}
-{{input value=avatar placeholder="avatar" id="avatar"}}
-<button class="ui button mini green" {{action "createUser"}}>Add User</button>
+<button  class="ui button orange large circular" {{action "createIndex" model.users}}>Jam</button><br><br>
+<button  class="ui button orange large circular" {{action "fetchIndex"}}>Pop It</button>
 <hr>
 New interest
 <br>
@@ -18,10 +12,3 @@ New interest
 <hr>
 {{dev-assign users=model.users interests=model.interests updateInterest="updateInterest"}}
 <hr>
-{{#each model.users as |user|}}
-  {{user.name}}<br>
-  {{user.age}}<br>
-  {{user.zip}}<br>
-  {{user.about}}<br>
-  <img src={{user.avatar}}><hr>
-{{/each}}

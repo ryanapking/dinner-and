@@ -55,6 +55,28 @@ export default Ember.Route.extend({
           })
         })
       })
+    },
+    createIndex(users){
+      var index = [];
+      users.forEach(function(user) {
+        var params = {
+          name: user.get("name"),
+          id: user.id
+        };
+        index.push(params);
+      })
+      var params = {
+        index: index
+      }
+      var newCatalog = this.store.createRecord("catalog", params);
+      newCatalog.save();
+      // console.log(params);
+    },
+    fetchIndex(){
+      this.store.findRecord("catalog", "-KW9SnSu7nqs8faubIAO").then(function(response) {
+        console.log(response.get("index"))
+      });
+
     }
 
   }
