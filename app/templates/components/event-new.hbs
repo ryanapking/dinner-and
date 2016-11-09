@@ -21,6 +21,14 @@
     <input id="description" name="description" type="text">
   </div>
   <div class="field">
+    <label>Event Date</label>
+    <input id="date" name="date" type="date">
+  </div>
+  <div class="field">
+    <label>Event Time</label>
+    <input id="time" name="time" type="time">
+  </div>
+  <div class="field">
     <label>Splash Image (URL only)</label>
     <input id="image" name="image" type="text">
   </div>
@@ -32,3 +40,4 @@
 <button class="ui button mini blue" {{action "toggleNew"}}>{{fa-icon "plus"}}</button>
 <br>
 {{/if}}
+<button {{action 'createEvent'}}>Test Button</button>

@@ -52,6 +52,24 @@ export default Ember.Component.extend({
             }
           ]
         },
+        date: {
+          identifier: 'date',
+          rules: [
+            {
+              type  : 'empty',
+              prompt: 'Please enter a date'
+            }
+          ]
+        },
+        time: {
+          identifier: 'time',
+          rules: [
+            {
+              type    : 'empty',
+              prompt  : 'Please enter a time'
+            }
+          ]
+        },
         image: {
           identifier  : 'image',
           rules: [
@@ -67,6 +85,10 @@ export default Ember.Component.extend({
   actions:{
     createEvent(){
       console.log(this.get("user"));
+      var date = $("#date").val();
+      var time = $("#time").val();
+      var newDate = new Date(date + " " + time);
+      var dateTime = Date.parse(newDate);
       var params = {
         name: $("#name").val(),
         maxGuests: $("#maxGuests").val(),
@@ -74,6 +96,7 @@ export default Ember.Component.extend({
         zip: $("#zip").val(),
         description: $("#description").val(),
         ratings: [],
+        date: dateTime,
         image: $("#image").val(),
         occurred: false,
         host: this.get("user")

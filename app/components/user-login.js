@@ -12,6 +12,9 @@ export default Ember.Component.extend({
     },
     showLogin() {
       this.set('showLogin', true);
+    },
+    snuffleLogin() {
+      this.sendAction('snuffleLogin');
     }
   }
 });
