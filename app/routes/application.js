@@ -29,15 +29,7 @@ export default Ember.Route.extend({
       auth.createUserWithEmailAndPassword(email, password).catch(function(error) {
         console.log(error.message);
       }).then(function(user) {
-        storage.findAll('catalog').then(function(response) {
-          if(response.get('content').length === 0) {
-            var record = storage.createRecord('catalog', {});
-            record.save();
-          }
-          var user = {name: params.name, id: user.uid};
-          response.addObject(user);
-          response.save();
-        })
+  
         newUser.set('id', user.uid);
         newUser.save().then(function() {
           currentThis.get('session').open('firebase', {
