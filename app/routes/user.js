@@ -78,6 +78,16 @@ export default Ember.Route.extend({
         this.addInterests.push(_interest);
         $("#" + _interestID).removeClass("basic");
       }
+    },
+
+    updateUser(user, params) {
+      Object.keys(params).forEach(function(key){
+        if(params[key]!==undefined){
+          user.set(key,params[key]);
+        }
+      });
+      user.save();
+      this.transitionTo('user', user.id);
     }
 
   }

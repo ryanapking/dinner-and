@@ -18,8 +18,10 @@
   </div>
 </div>
 
+
 <!-- Change Interests for Authenticated User -->
 {{#if (isLoggedIn model.user.id session.uid)}}
+  {{user-edit user=model.user updateUser="updateUser"}}
   {{interests-edit interests=model.interests user=model.user addInterests="addInterests"}}
   {{event-new user=model.user createEvent="createEvent"}}
 
