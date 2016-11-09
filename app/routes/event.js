@@ -5,7 +5,10 @@ export default Ember.Route.extend({
   model(params){
     return Ember.RSVP.hash({
       event: this.store.findRecord("event", params.event_id, { reload: true}),
-      users: this.store.findAll('user')
+      users: this.store.findAll('user'),
+      userList: this.store.findRecord("catalog", "masterCatalog").then(function(response) {
+        return response.get('index');
+      })
     });
   },
   actions:{
@@ -25,7 +28,8 @@ export default Ember.Route.extend({
       })
     },
     sendInvite(event){
-      var userID = $("#invite-send").val();
+      var userID = $('.ui.search').search('get result').id;
+      console.log(userID);
       var storage = this.store;
 
       storage.findRecord("user", userID).then(function(response) {

@@ -35,7 +35,6 @@
   Attended
     {{#each model.event.attended as |attended|}}
       <p>{{#link-to "user" attended.id}}{{attended.name}}{{/link-to}}</p>
-
     {{/each}}
 {{else}}
 <!-- List of Guests -->
@@ -49,6 +48,12 @@
     {{/each}}
   </div>
 {{/if}}
+
+<div style="margin-top:200px">
+  <h3>Description:</h3>
+  {{model.event.description}}
+</div>
+
 <div class="ui horizontal divider" style="font-size:175%;font-family:'Muli'">Whereabouts</div>
 <!-- Request Invitation as non-host -->
 {{#if session.isAuthenticated}}
@@ -70,18 +75,21 @@
   <hr>
   <select id="user-dropdown">
     {{#each model.event.inviteRequests as |user|}}
-      <option value={{user.id}}>{{user.name}}</option>
+      {{#unless (isInvited user.id model.event.inviteRequests)}}
+        <option value={{user.id}}>{{user.name}}</option>
+      {{/unless}}
     {{/each}}
   </select>
   <button class="ui button mini green" {{action "addInvited" model.event}}>Assign User to Event</button>
 
   <!-- Send Out Invitations to Users -->
   Send Out Invites
-  <select id="invite-send">
-    {{#each model.users as |user|}}
-      <option value={{user.id}}>{{user.name}}</option>
-    {{/each}}
-  </select>
+
+  {{#ui-search source=model.userList onSearchQuery=(action (mut query)) onSelect=(action (mut selected))}}
+    <input class="prompt" type="text" placeholder="Users to invite...">
+    <div class="results"></div>
+  {{/ui-search}}
+
   <button class="ui button mini green" {{action "sendInvite" model.event}}>Send Invite</button>
 
   <!-- Mark Invitees as Attended -->
