@@ -1,4 +1,3 @@
-{{#if displayUserEdit}}
   <div class="container" style="margin:10px">
     <form class="ui form" {{action "updateUser" user on="submit"}}>
       <div class="ui horizontal divider">Edit My Profile</div>
@@ -33,7 +32,4 @@
       <button class="ui button circular fluid" style="background-color:#EEF3E2;margin-top:10px;" type="submit">Update Profile</button>
     </form>
   </div>
-{{else}}
-  <button class="ui button mini orange" {{action "showUserEdit"}}>Edit My Profile</button>
-{{/if}}
 <hr>

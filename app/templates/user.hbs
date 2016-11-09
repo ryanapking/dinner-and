@@ -1,6 +1,9 @@
 <img class="ui segment right floated" src={{model.user.avatar}} style="width:250px;height:auto;">
 <div class="">
-  <div class="ui horizontal divider" style="font-size:200%;font-family:'Muli'">{{model.user.name}}</div>
+  <div class="ui horizontal divider" style="font-size:200%;font-family:'Muli'">
+    {{model.user.name}}&nbsp;
+    {{#link-to "useredit" model.user.id}}{{fa-icon "fa-pencil-square-o"}}{{/link-to}}
+  </div>
   <div class="ui horizontal segments">
     <div class="ui segment" style="background-color:#EEF3E2;text-align:center;">
       <p style="font-size:150%;">Age</p>
