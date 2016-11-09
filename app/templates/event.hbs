@@ -17,7 +17,6 @@ When: {{date-stamp model.event.date}}<br>
   Attended
     {{#each model.event.attended as |attended|}}
       <p>{{#link-to "user" attended.id}}{{attended.name}}{{/link-to}}</p>
-
     {{/each}}
 {{else}}
 <!-- List of Guests -->
@@ -29,9 +28,9 @@ When: {{date-stamp model.event.date}}<br>
 {{/if}}
 
 <div style="margin-top:200px">
+  <h3>Description:</h3>
   {{model.event.description}}
 </div>
-<hr>
 
 <!-- Request Invitation as non-host -->
 {{#if session.isAuthenticated}}
@@ -60,11 +59,12 @@ When: {{date-stamp model.event.date}}<br>
 
   <!-- Send Out Invitations to Users -->
   Send Out Invites
-  <select id="invite-send">
-    {{#each model.users as |user|}}
-      <option value={{user.id}}>{{user.name}}</option>
-    {{/each}}
-  </select>
+
+  {{#ui-search source=model.userList onSearchQuery=(action (mut query)) onSelect=(action (mut selected))}}
+    <input class="prompt" type="text" placeholder="Users to invite...">
+    <div class="results"></div>
+  {{/ui-search}}
+
   <button class="ui button mini green" {{action "sendInvite" model.event}}>Send Invite</button>
 
   <!-- Mark Invitees as Attended -->
