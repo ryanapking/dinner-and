@@ -40,7 +40,7 @@ export default Ember.Route.extend({
             password: password
           }).then(function() {
             currentThis.store.unloadAll();
-            currentThis.transitionTo('users');
+            currentThis.transitionTo('user');
           });
         });
       });
