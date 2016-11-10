@@ -39,8 +39,9 @@ export default Ember.Route.extend({
             email: email,
             password: password
           }).then(function() {
+            console.log(user.uid);
             currentThis.store.unloadAll();
-            currentThis.transitionTo('user');
+            currentThis.transitionTo('user', user.uid);
           });
         });
       });
