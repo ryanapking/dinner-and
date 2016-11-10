@@ -29,17 +29,17 @@
   {{event-new user=model.user createEvent="createEvent"}}
 
   <!-- List of Invites to Events -->
-  {{#if model.user.invitesReceived.length}}
+
     <div class="ui horizontal divider" style="font-size:175%;font-family:'Muli'">Your Invites</div>
     <select id="user-dropdown">
       {{#each model.user.invitesReceived as |invite|}}
-        {{#unless (isInvited model.user.id model.event.invited)}}
+
           <option value={{invite.id}}>{{invite.name}}</option>
-        {{/unless}}
+
       {{/each}}
     </select>
     <button class="ui button mini green circular" {{action "acceptInvite" model.user}}>Accept Request</button>
-  {{/if}}
+
 {{/if}}
 
 <!-- Lists of Interests -->
