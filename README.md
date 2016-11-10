@@ -1,7 +1,7 @@
-# Dinner-and
+# Dinner &
+Epicodus JavaScript Frameworks Group Project by Team Alodia
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+A "communal meal meetup" organizer made with Ember.js, Firebase, Semantic UI, Torii, Leaflet, and Font Awesome. For more information, please refer to the following presentation: https://docs.google.com/presentation/d/1_Z5PgwL2vNesgFvSxGaijq2fqvpKHLJfubvdvyv1B2A/edit?usp=sharing
 
 ## Prerequisites
 
@@ -41,7 +41,7 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Deploying
 
-Specify what it takes to deploy your app.
+This app is configured to us an existing Firebase data store, but you can use your own!
 
 ## Further Reading / Useful Links
 
@@ -51,3 +51,14 @@ Specify what it takes to deploy your app.
   * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
   * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
 
+## Team Alodia
+* Ryan Apking
+* HK Kahng
+* Justin Kincaid
+* Alaina Traxler
+
+### License
+
+Published under the MIT License.
+
+Copyright (c) 2016 **_Team Alodia_**
