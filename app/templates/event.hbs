@@ -61,6 +61,8 @@
 <!-- Host Invite Section -->
 {{#if (isLoggedIn model.event.host.id session.uid)}}
 <div class="ui horizontal divider" style="font-size:175%;font-family:'Muli'">Invitations and Requests</div>
+  {{#if model.event.inviteRequests.length}}
+
   <!-- Accept Invitations as Host -->
   <select id="user-dropdown">
     {{#each model.event.inviteRequests as |user|}}
@@ -70,6 +72,7 @@
     {{/each}}
   </select>
   <button class="ui button mini green circular" {{action "addInvited" model.event}} style="margin-bottom:5px;">Accept Request</button>
+  {{/if}}
 
   <!-- Send Out Invitations to Users -->
 
