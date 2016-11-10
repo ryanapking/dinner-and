@@ -64,8 +64,6 @@
   </div>
 {{/if}}
 
-{{planned}}
-{{#if planned}}
   <div id='plannedHeader' class="ui horizontal divider" style="font-size:175%;font-family:'Muli'">Planned</div>
   <div class="ui four cards" style="width:100%">
     {{#each model.user.hosted as |event|}}
@@ -75,4 +73,3 @@
       {{/unless}}
     {{/each}}
   </div>
-{{/if}}
