@@ -1,4 +1,0 @@
-{{#each interests as |interest|}}
-  <button id={{interest.id}} class="ui button basic" {{action "togglebutton" interest interest.id}} style="margin-bottom:5px;">{{interest.name}}</button>
-{{/each}}
-<button class="ui button circular fluid" style="background-color:#EEF3E2;margin-top:10px;" {{action "addInterests" user.id}}>Update Interests</button>
